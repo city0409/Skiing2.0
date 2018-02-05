@@ -4,29 +4,18 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour 
 {
-    [SerializeField]
-    private GameObject visual1;
-    [SerializeField]
-    private GameObject visual2;
-    [SerializeField]
-    private GameObject visual3;
-    [SerializeField]
-    private float speed;
+    [SerializeField] private GameObject visual1;
+    [SerializeField] private GameObject visual2;
+    [SerializeField] private GameObject visual3;
+    [SerializeField] private float speed;
     public float Speed { get { return speed; } set { speed = value; } }
-    [SerializeField]
-    private float jumpForce = 20f;
-    [SerializeField]
-    private float moveForce = 10f;
-    [SerializeField]
-    private float gravity = 0.0f;
-    [SerializeField]
-    private float maxSpeed = 30f;
-    [SerializeField]
-    private LayerMask layerMaskGround;
-    [SerializeField]
-    private float rolling_min_time = 1.0f;
-    [SerializeField]
-    private float rolling_thresh = 30f;
+    [SerializeField] private float jumpForce = 20f;
+    [SerializeField] private float moveForce = 10f;
+    [SerializeField] private float gravity = 0.0f;
+    [SerializeField] private float maxSpeed = 30f;
+    [SerializeField] private LayerMask layerMaskGround;
+    [SerializeField] private float rolling_min_time = 1.0f;
+    [SerializeField] private float rolling_thresh = 30f;
     private float cur_rolling_time = 0f;
     private float rolling_speed;
 
@@ -59,8 +48,6 @@ public class PlayerMotor : MonoBehaviour
         if (controller.MyState.IsOnGround && m_left_btn_clicked)
         {
             rig.AddForce(new Vector2(jumpForce * ground_normal.x, jumpForce * ground_normal.y), ForceMode2D.Impulse);
-            //controller.MyState.IsSkiing = false;
-            //controller.MyState.IsJump = true;
         }
         else if (m_left_btn_clicked && !controller.MyState.IsOnGround && !controller.MyState.IsRollling)
         {
@@ -137,9 +124,11 @@ public class PlayerMotor : MonoBehaviour
             visual1.SetActive(false);
             visual2.SetActive(false);
             visual3.SetActive(true);
+
         }
         
-        cur_velocity.Scale(new Vector2(0.9f, 0.9f));
+        cur_velocity.Scale(new Vector2(0.1f, 0.9f));
+        speed = cur_velocity.magnitude;
         if (cur_velocity.magnitude < 0.1f)
         {
             cur_velocity = Vector2.zero;

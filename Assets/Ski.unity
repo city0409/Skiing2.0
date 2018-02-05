@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 95540877}
   - component: {fileID: 95540876}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundTest (2)
   m_TagString: BG
   m_Icon: {fileID: 0}
@@ -407,11 +407,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4229978577772224, guid: 871fbdece0d4b8145a815b8438f3069a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.2
+      value: 5.2
       objectReference: {fileID: 0}
     - target: {fileID: 4229978577772224, guid: 871fbdece0d4b8145a815b8438f3069a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.6
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4229978577772224, guid: 871fbdece0d4b8145a815b8438f3069a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -439,7 +439,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1912428962266180, guid: 871fbdece0d4b8145a815b8438f3069a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 871fbdece0d4b8145a815b8438f3069a, type: 2}
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227448974}
   - component: {fileID: 227448975}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440875881}
   - component: {fileID: 440875880}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundTest (4)
   m_TagString: BG
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485026332}
   - component: {fileID: 485026333}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -939,11 +939,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4412819055368132, guid: fdc1041956f10f843bc3a3441f56f34f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -28.1
+      value: -33.6
       objectReference: {fileID: 0}
     - target: {fileID: 4412819055368132, guid: fdc1041956f10f843bc3a3441f56f34f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.8
+      value: 16.64
       objectReference: {fileID: 0}
     - target: {fileID: 4412819055368132, guid: fdc1041956f10f843bc3a3441f56f34f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 677419369}
   - component: {fileID: 677419371}
   - component: {fileID: 677419370}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1990,7 +1990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087059471}
   - component: {fileID: 1087059472}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2240,6 +2240,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 50990938614432338, guid: 49bf5131b141a954a8307b495528b469,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49bf5131b141a954a8307b495528b469, type: 2}
   m_IsPrefabParent: 0
@@ -2437,7 +2442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c3d8b07068de04fb7db59fba3d1664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 114607634751773776, guid: fdc1041956f10f843bc3a3441f56f34f, type: 2}
 --- !u!1 &1399586392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2798,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1487752120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 574, y: 299.5, z: 0}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1790939649}
@@ -3266,7 +3270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828894215}
   - component: {fileID: 1828894214}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundTest (3)
   m_TagString: BG
   m_Icon: {fileID: 0}
@@ -3606,7 +3610,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958072259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 220, y: 197.5, z: 0}
+  m_LocalPosition: {x: 606, y: 438, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1790939649}
@@ -3680,7 +3684,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2037828287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 220, y: 197.5, z: 0}
+  m_LocalPosition: {x: 606, y: 438, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1790939649}

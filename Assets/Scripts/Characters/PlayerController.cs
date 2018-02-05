@@ -10,34 +10,19 @@ public class PlayerController : Singleton<PlayerController>
     private PlayerState myState;
     public PlayerState MyState { get { return myState; }set { myState = value; } }
 
-    [SerializeField]
-    private GameObject visual1;
-    [SerializeField]
-    private GameObject visual2;
-    [SerializeField]
-    private GameObject visual3;
+    [SerializeField] private GameObject visual1;
+    [SerializeField] private GameObject visual2;
+    [SerializeField] private GameObject visual3;
     private BoxCollider2D playColl;
 
-    //private bool m_Jump;
-    //private bool m_Roll;
     private bool m_left_btn_clicked;
     private Vector3 ground_normal;//当前地面法线
 
-    private Vector3 TowardsDown = new Vector3(0.0f, -1.0f, 0.0f);
-    private Vector3 TowardsUp = new Vector3(0.5f, 1f, 0);
-    private Vector3 TowardsLeft = new Vector3(-1f, 0.5f, 0);
-    private Vector3 TowardsRight = new Vector3(1f, -0.5f, 0);
-
-    [SerializeField]
-    private SnowManController snowMan;
-    [SerializeField]
-    private LayerMask layerMask;
-    [SerializeField]
-    private LayerMask layerMaskStone;
-    [SerializeField]
-    private LayerMask layerMaskSnowman;
-    [SerializeField]
-    private LayerMask layerMaskSnow;
+    [SerializeField] private SnowManController snowMan;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask layerMaskStone;
+    [SerializeField] private LayerMask layerMaskSnowman;
+    [SerializeField] private LayerMask layerMaskSnow;
 
 
     protected override void Awake()
@@ -57,14 +42,6 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
-        //if (!m_Jump)
-        //{
-        //    m_Jump = Input.GetMouseButtonDown(0);
-        //    //myState.IsRoll = false;
-
-        //    if (!m_Roll)
-        //        m_Roll = Input.GetMouseButtonDown(0);
-        //}
         if (!m_left_btn_clicked)
         {
             m_left_btn_clicked = Input.GetMouseButtonDown(0);
@@ -84,13 +61,8 @@ public class PlayerController : Singleton<PlayerController>
 
         if (myState.IsLie)
         {
-            //Debug.Log("躺下了");
             playerMotor.Lie();
         }
-        
-        //m_Jump = false;
-        //m_Roll = false;
-
     }
 
     private void GoYou()
@@ -120,7 +92,6 @@ public class PlayerController : Singleton<PlayerController>
             myState.IsLie = true;
             return;
         }
-
 
         ContactFilter2D filter_stone = new ContactFilter2D();
         filter_stone.layerMask = layerMaskStone;
@@ -203,11 +174,7 @@ public class PlayerController : Singleton<PlayerController>
                 //myState.IsJump = false;
             }
         }
-        //else
-        //{
-            //myState.IsJump = false;
-           // myState.IsRoll = true;
-        //}
+
 
         //Vector2 col_offset = playColl.offset;
         //Vector2 col_size = playColl.size;
@@ -259,38 +226,6 @@ public class PlayerController : Singleton<PlayerController>
         //        }
         //    }
         //}
-
-        //if (is_hit)
-        //{
-        //    if (is_lie)
-        //    {
-        //        Debug.Log("jiance");
-        //        myState.IsJump = false;
-        //        myState.IsLie = true;
-        //    }
-        //    else
-        //    {
-        //        myState.IsSkiing = true;
-        //        myState.IsJump = false;
-        //    }
-        //}
-        //else
-        //{
-        //    myState.IsJump = false;
-        //    myState.IsRoll = true;
-        //}
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + TowardsDown * 1f);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + TowardsUp * 1f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + TowardsLeft * 1f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + TowardsRight * 1f);
 
     }
 
