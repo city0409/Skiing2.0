@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour 
+public class Ground1 : MonoBehaviour 
 {
+    [SerializeField]
+    private Transform cube;
+
     [SerializeField]
     private EdgeCollider2D edgeCollider2D;
 
@@ -18,7 +21,7 @@ public class Ground : MonoBehaviour
 
         for (int i = 0; i < poss .Length ; i++)
         {
-            z += 0.1f;
+            z = -0.1f;
             x += 0.3f;
             y -= 0.1f;
             w += 0.1f;
@@ -26,7 +29,7 @@ public class Ground : MonoBehaviour
             float sample = Mathf.PerlinNoise(z,w);
 
             poss[i] = new Vector3(x, (sample*4 + y));
-
+            Instantiate(cube,new Vector3(sample * 12 + poss[i].x, sample * 12 + poss[i].y,z),Quaternion.identity);
         }
         edgeCollider2D.points = poss;
 
