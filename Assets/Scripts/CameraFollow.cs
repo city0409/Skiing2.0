@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
 	
 	private void LateUpdate () 
 	{
-        bgText.transform.position = GetComponent<Transform>().position+new Vector3(0f,0f,5f);
+        bgText.transform.position = GetComponent<Transform>().position + new Vector3(0f,0f,20f);
         tempPos = transform.position;
 
         RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, 30f, mask);

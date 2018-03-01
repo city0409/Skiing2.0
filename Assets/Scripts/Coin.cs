@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour 
 {
-    private Collider2D collCoin;
+    private CircleCollider2D collCoin;
     public AudioSource audioCoin;
     private Renderer rend;
     private void Awake()
     {
-        collCoin = GetComponent<Collider2D>();
+        collCoin = GetComponent<CircleCollider2D>();
         rend = GetComponent<Renderer>();
         audioCoin = GetComponent<AudioSource>();
 
