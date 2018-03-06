@@ -12,7 +12,7 @@ public class MountainMove : MonoBehaviour
     {
         rend = GetComponentInChildren<Renderer>();
         mat = rend.material;
-        Player = LevelDirector.Instance.Player.GetComponent<PlayerMotor>();
+        Player = LevelDirector.Instance.PlayerController.GetComponent<PlayerMotor>();
     }
 
     private void Update()

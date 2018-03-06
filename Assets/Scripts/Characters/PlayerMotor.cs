@@ -7,6 +7,10 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private GameObject visual1;
     [SerializeField] private GameObject visual2;
     [SerializeField] private GameObject visual3;
+    public GameObject Visual1 { get { return visual1; } set { visual1 = value; } }
+    public GameObject Visual2 { get { return visual1; } set { visual1 = value; } }
+    public GameObject Visual3 { get { return visual1; } set { visual1 = value; } }
+
     [SerializeField] private float speed;
     public float Speed { get { return speed; } set { speed = value; } }
     [SerializeField] private float jumpForce = 20f;
@@ -22,6 +26,8 @@ public class PlayerMotor : MonoBehaviour
     private Rigidbody2D rig;
     private PlayerController controller;
     private Vector2 cur_velocity;
+    public Vector2 Cur_velocity { get { return cur_velocity; } set { cur_velocity = value; } }
+
     private bool reset = true;
     public bool Reset { get { return reset; } set { reset = value; } }
 

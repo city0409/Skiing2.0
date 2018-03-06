@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    private const string pauseName = "pause";
+    private const string continueName = "continue";
+    private const string restartName = "restart";
     private PlayerMotor playerMotor;
-    private LevelDirector levelDirector;
     private PlayerState myState;
-    public PlayerState MyState { get { return myState; }set { myState = value; } }
+    public PlayerState MyState { get { return myState; } set { myState = value; } }
 
     [SerializeField] private GameObject visual1;
     [SerializeField] private GameObject visual2;
     [SerializeField] private GameObject visual3;
     private BoxCollider2D playColl;
+    public BoxCollider2D PlayColl { get { return playColl; } set { playColl = value; } }
 
     private bool m_left_btn_clicked;
     private Vector3 ground_normal;//当前地面法线
@@ -42,6 +45,11 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
+        GameObject obj = EventSystem.current.currentSelectedGameObject;
+        if (obj && (obj.name == pauseName || obj.name == continueName || obj.name == restartName))
+        {
+            return;
+        }
         if (!m_left_btn_clicked)
         {
             m_left_btn_clicked = Input.GetMouseButtonDown(0);
@@ -68,7 +76,7 @@ public class PlayerController : Singleton<PlayerController>
     private void GoYou()
     {
         //playColl.offset = new Vector2(0f, 0.34f);
-       // playColl.size = new Vector2(1.02f, 1.68f);
+        // playColl.size = new Vector2(1.02f, 1.68f);
         //myState.IsSkiing = true;
     }
 

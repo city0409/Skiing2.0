@@ -5,9 +5,20 @@ using UnityEngine;
 public class LevelDirector : Singleton<LevelDirector>
 {
     [SerializeField]
-    private PlayerController player;
-    public PlayerController Player { get { return player; } set { player = value; } }
-    
+    private GameObject GroundTestPos1;
+    [SerializeField]
+    private GameObject GroundTestPos2;
+    [SerializeField]
+    private PlayerController playerController;
+    public PlayerController PlayerController { get { return playerController; } set { playerController = value; } }
+    [SerializeField]
+    private PlayerMotor playerMotor;
+    public PlayerMotor PlayerMotor { get { return playerMotor; } set { playerMotor = value; } }
+
+    [SerializeField]
+    private Vector3 initPlayerPos;
+    [SerializeField]
+    private Vector3 initGround2Pos;
 
     private int score;
     public int Score{get { return score; }set{score = value;}}
@@ -16,12 +27,20 @@ public class LevelDirector : Singleton<LevelDirector>
 
     private void Start () 
 	{
-        //player = GetComponent<PlayerController>();
-        player.MyState.IsSkiing = true;
+        playerController.MyState.IsSkiing = true;
+        InitPlayer();
     }
 	
-	private void Update () 
+	public void InitPlayer () 
 	{
-		
-	}
+        playerController.transform.position = initPlayerPos;
+        playerController.GetComponentInChildren<TrailRenderer>().time = 0.1f;
+        playerMotor.Cur_velocity = Vector2.zero;
+        //playerMotor.Visual1.SetActive(true);
+        //playerMotor.Visual2.SetActive(false);//这两句主角会不见
+        //playerMotor.Visual3.SetActive(false);
+        //playerMotor.Reset = true;
+        GroundTestPos1.transform.position = initGround2Pos;
+        GroundTestPos2.transform.position = initGround2Pos;
+    }
 }
