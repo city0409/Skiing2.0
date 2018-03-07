@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : PersistentSingleton<GameManager>
 {
     public int GameFrameRate = 300;
     public float TimeScale { get { return Time.timeScale; } private set { Time.timeScale = value; } }
