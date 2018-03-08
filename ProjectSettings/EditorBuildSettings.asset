@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/SplashScreen.unity
     guid: 54d8e1f57b4ea2748a35f239ff8ee79f
   - enabled: 1
-    path: Assets/Home.unity
-    guid: 7e8a27459bcdee640a6176756dbd5d96
-  - enabled: 1
     path: Assets/Ski.unity
     guid: 4fa5218eb170e634886fc900856cdefc
   - enabled: 1
-    path: Assets/Sort.unity
+    path: Assets/Rank.unity
     guid: 21d8422b22db6a443985ecc9076058d4

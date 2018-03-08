@@ -11,8 +11,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
-    private string loadSceneName;
-    [SerializeField]
     private Button pauseButton;
     [SerializeField]
     private Button continueButton;
@@ -65,7 +63,7 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.Reset();
         DisplayMenu();
         UIManager.Instance.FaderOn(true, 1f);
-        SceneManager.LoadScene(loadSceneName);
+        LoadSceneManager.LoadScene(1);
     }
 
     public void Lowpass()

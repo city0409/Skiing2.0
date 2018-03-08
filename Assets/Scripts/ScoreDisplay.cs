@@ -20,6 +20,6 @@ public class ScoreDisplay : MonoBehaviour
     private void Update () 
 	{
         scoreText.text = director.ScoreAward.ToString();
-        scoreAwardText.text =director .Score.ToString();
+        //scoreAwardText.text =director .Score.ToString();
     }
 }
