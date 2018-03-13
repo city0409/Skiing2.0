@@ -25,6 +25,9 @@ public class LevelDirector : Singleton<LevelDirector>
     private int scoreAward;
     public int ScoreAward { get { return scoreAward; } set { scoreAward = value; } }
 
+    private PlayerData data;
+
+
     private void Start () 
 	{
         playerController.MyState.IsSkiing = true;
@@ -42,5 +45,35 @@ public class LevelDirector : Singleton<LevelDirector>
         //playerMotor.Reset = true;
         GroundTestPos1.transform.position = initGround2Pos;
         GroundTestPos2.transform.position = initGround2Pos;
+    }
+
+    private void AddHistoryScore()
+    {
+        if (score < 0) return;
+        if (data.LeaderboardDatas.Count >= 10)
+        {
+            for (int i = 0; i < data.LeaderboardDatas.Count; i++)
+            {
+                if (score > data.LeaderboardDatas[i].score)
+                {
+                    LeaderboardData leaderboardData = new LeaderboardData();
+                    leaderboardData.score = score;
+                    leaderboardData.date = System.DateTime.Now.ToString("yy-MM-dd,h:mm:ss tt");
+                    data.LeaderboardDatas.Add(leaderboardData);
+                    break;
+                }
+            }
+            if (data.LeaderboardDatas.Count > 10)
+            {
+                data.LeaderboardDatas.RemoveAt(data.LeaderboardDatas.Count - 2);
+            }
+        }
+        else
+        {
+            LeaderboardData leaderboardData = new LeaderboardData();
+            leaderboardData.score = score;
+            leaderboardData.date = System.DateTime.Now.ToString("yy-MM-dd,h:mm:ss tt");
+            data.LeaderboardDatas.Add(leaderboardData);
+        }
     }
 }

@@ -1,15 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "CreateScriptable/PlayerData", order = 1)]
 public class PlayerData : ScriptableObject
 {
-    public List<RankItem> rankList;
+    public new string name;
+    public int maxScore;
+    public List<LeaderboardData> LeaderboardDatas = new List<LeaderboardData>();
 }
 
-public class RankItem
+[Serializable]
+public struct LeaderboardData : IComparable<LeaderboardData>
 {
-    public string name;
-    public int currentScore;
+    public int score;
+    public string date;
+
+    public int CompareTo(LeaderboardData x)
+    {
+        return score.CompareTo(x.score);
+    }
 }

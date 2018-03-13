@@ -535,7 +535,7 @@ Prefab:
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 93.59999
+      value: -138.83333
       objectReference: {fileID: 0}
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
@@ -684,7 +684,7 @@ Prefab:
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -187.20004
+      value: -305.43332
       objectReference: {fileID: 0}
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
@@ -833,7 +833,7 @@ Prefab:
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -93.60004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
@@ -1197,7 +1197,7 @@ Prefab:
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.000015258789
+      value: -194.36668
       objectReference: {fileID: 0}
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
@@ -1346,7 +1346,7 @@ Prefab:
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 187.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224428289579163494, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
@@ -1455,6 +1455,10 @@ Prefab:
     - target: {fileID: 114323121498006962, guid: 3a36aa618eee71345bfe0387fe65e508,
         type: 2}
       propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220320815031040, guid: 3a36aa618eee71345bfe0387fe65e508, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
