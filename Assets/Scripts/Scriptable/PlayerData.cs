@@ -6,8 +6,8 @@ using System;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "CreateScriptable/PlayerData", order = 1)]
 public class PlayerData : ScriptableObject
 {
-    public new string name;
-    public int maxScore;
+    public string playerName;
+
     public List<LeaderboardData> LeaderboardDatas = new List<LeaderboardData>();
 }
 
@@ -15,7 +15,7 @@ public class PlayerData : ScriptableObject
 public struct LeaderboardData : IComparable<LeaderboardData>
 {
     public int score;
-    public string date;
+    public string name;
 
     public int CompareTo(LeaderboardData x)
     {

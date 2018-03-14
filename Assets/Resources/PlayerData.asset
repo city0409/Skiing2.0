@@ -11,4 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01d83c8e5edfa7498c764a3cda1472a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  maxScore: 0
+  playerName: City
+  LeaderboardDatas:
+  - score: 0
+    name: 
+  - score: 0
+    name: 
+  - score: 0
+    name: 
+  - score: 0
+    name: 
+  - score: 0
+    name: 

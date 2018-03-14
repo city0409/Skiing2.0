@@ -50,7 +50,7 @@ public class LevelDirector : Singleton<LevelDirector>
     private void AddHistoryScore()
     {
         if (score < 0) return;
-        if (data.LeaderboardDatas.Count >= 10)
+        if (data.LeaderboardDatas.Count >= 5)
         {
             for (int i = 0; i < data.LeaderboardDatas.Count; i++)
             {
@@ -58,12 +58,12 @@ public class LevelDirector : Singleton<LevelDirector>
                 {
                     LeaderboardData leaderboardData = new LeaderboardData();
                     leaderboardData.score = score;
-                    leaderboardData.date = System.DateTime.Now.ToString("yy-MM-dd,h:mm:ss tt");
+                    leaderboardData.name = data.playerName;
                     data.LeaderboardDatas.Add(leaderboardData);
                     break;
                 }
             }
-            if (data.LeaderboardDatas.Count > 10)
+            if (data.LeaderboardDatas.Count > 5)
             {
                 data.LeaderboardDatas.RemoveAt(data.LeaderboardDatas.Count - 2);
             }
@@ -72,7 +72,7 @@ public class LevelDirector : Singleton<LevelDirector>
         {
             LeaderboardData leaderboardData = new LeaderboardData();
             leaderboardData.score = score;
-            leaderboardData.date = System.DateTime.Now.ToString("yy-MM-dd,h:mm:ss tt");
+            leaderboardData.name = data.playerName;
             data.LeaderboardDatas.Add(leaderboardData);
         }
     }

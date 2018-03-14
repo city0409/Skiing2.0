@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class LeaderboardMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject content;
+    private GameObject LayoutGroupName;
 
     private PlayerData data;
     private List<Text> scoreTexts = new List<Text>();
-    private List<Text> dataTexts = new List<Text>();
+    private List<Text> nameTexts = new List<Text>();
 
     private void Awake()
     {
         data = Resources.Load<PlayerData>("PlayerData");
-        foreach (Transform item in content.transform)
+        foreach (Transform item in LayoutGroupName.transform)
         {
-            scoreTexts.Add(item.GetComponent<Text>());
-            dataTexts.Add(item.GetChild(0).GetComponent<Text>());
+            nameTexts.Add(item.GetComponent<Text>());
+            scoreTexts.Add(item.GetChild(0).GetComponent<Text>());
         }
     }
 
@@ -29,7 +29,7 @@ public class LeaderboardMenu : MonoBehaviour
         for (int i = 0; (i < scoreTexts.Count) && (i < data.LeaderboardDatas.Count); i++)
         {
             scoreTexts[i].text = data.LeaderboardDatas[i].score.ToString();
-            dataTexts[i].text = data.LeaderboardDatas[i].date;
+            nameTexts[i].text = data.LeaderboardDatas[i].name;
         }
 
     }
