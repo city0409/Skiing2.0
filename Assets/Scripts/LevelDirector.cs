@@ -1,24 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelDirector : Singleton<LevelDirector>
 {
-    [SerializeField]
-    private GameObject GroundTestPos1;
-    [SerializeField]
-    private GameObject GroundTestPos2;
-    [SerializeField]
-    private PlayerController playerController;
+    [SerializeField] private GameObject GroundTestPos1;
+    [SerializeField] private GameObject GroundTestPos2;
+    [SerializeField] private PlayerController playerController;
     public PlayerController PlayerController { get { return playerController; } set { playerController = value; } }
-    [SerializeField]
-    private PlayerMotor playerMotor;
+    [SerializeField] private PlayerMotor playerMotor;
     public PlayerMotor PlayerMotor { get { return playerMotor; } set { playerMotor = value; } }
 
-    [SerializeField]
-    private Vector3 initPlayerPos;
-    [SerializeField]
-    private Vector3 initGround2Pos;
+    [SerializeField] private Vector3 initPlayerPos;
+    [SerializeField] private Vector3 initGround2Pos;
 
     private int score;
     public int Score{get { return score; }set{score = value;}}
@@ -27,7 +22,7 @@ public class LevelDirector : Singleton<LevelDirector>
 
     private PlayerData data;
 
-
+    
     private void Start () 
 	{
         playerController.MyState.IsSkiing = true;
@@ -76,4 +71,6 @@ public class LevelDirector : Singleton<LevelDirector>
             data.LeaderboardDatas.Add(leaderboardData);
         }
     }
+
+
 }

@@ -46,4 +46,57 @@ public static class FadeInOut
         }
         target.material.color = color;
     }
+    //推荐用第二种
+    //public static IEnumerator FadeSound(AudioSource oldAudio, AudioSource newAudio, float duration)
+    //{
+
+    //    float volume = oldAudio.volume;
+
+    //    for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / (duration / 2))
+    //    {
+
+    //        float targetVolume = Mathf.Lerp(volume, 0, t);
+    //        oldAudio.volume = targetVolume;
+    //        yield return null;
+    //    }
+    //    oldAudio.volume = 0;
+    //    oldAudio.Stop();
+    //    newAudio.Play();
+    //    newAudio.volume = 0;
+    //    for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / (duration / 2))
+    //    {
+
+    //        float targetVolume = Mathf.Lerp(volume, 1, t);
+    //        newAudio.volume = targetVolume;
+    //        yield return null;
+    //    }
+    //    newAudio.volume = 1;
+    //}
+
+    public static IEnumerator FadeSoundByCilp(AudioSource audioSource, AudioClip newAudio, float duration)
+    {
+
+        float volume = audioSource.volume;
+
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / (duration / 2))
+        {
+
+            float targetVolume = Mathf.Lerp(volume, 0, t);
+            audioSource.volume = targetVolume;
+            yield return null;
+        }
+        audioSource.volume = 0;
+        audioSource.Stop();
+        audioSource.clip = newAudio;
+        audioSource.Play();
+        audioSource.volume = 0;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / (duration / 2))
+        {
+
+            float targetVolume = Mathf.Lerp(volume, 1, t);
+            audioSource.volume = targetVolume;
+            yield return null;
+        }
+        audioSource.volume = 1;
+    }
 }

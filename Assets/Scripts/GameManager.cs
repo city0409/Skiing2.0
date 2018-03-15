@@ -58,4 +58,44 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         Time.timeScale = savedTimeScale;
     }
+
+    public void AppSuspendEvent()
+    {
+        EventService.Instance.GetEvent<AppSuspendEvent>().Publish();
+    }
+
+    public void BackToMainMenuEvent()
+    {
+        EventService.Instance.GetEvent<BackToMainMenuEvent>().Publish();
+    }
+
+    public void GameStartEvent()
+    {
+        EventService.Instance.GetEvent<GameStartEvent>().Publish();
+    }
+
+    public void LoadinGameEvent()
+    {
+        EventService.Instance.GetEvent<LoadinGameEvent>().Publish();
+    }
+
+    public void PlayerDeadEvent()
+    {
+        EventService.Instance.GetEvent<PlayerDeadEvent>().Publish();
+    }
+
+    public void ResourceInitedEvent()
+    {
+        EventService.Instance.GetEvent<ResourceInitedEvent>().Publish();
+    }
+
+    public void ReStartEvent()
+    {
+        EventService.Instance.GetEvent<ReStartEvent>().Publish();
+    }
+
+    public void UnPausedEvent()
+    {
+        EventService.Instance.GetEvent<UnPausedEvent>().Publish();
+    }
 }

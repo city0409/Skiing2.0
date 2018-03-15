@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 
+/// </summary>
 public class UIManager : Singleton<UIManager>
 {
+    [SerializeField] private HomeUIPannel homeUIPannel;
+
+
     [SerializeField]
     private Image fader;
     [SerializeField]
