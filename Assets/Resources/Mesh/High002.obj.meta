@@ -1,43 +1,23 @@
 fileFormatVersion: 2
-guid: cbe77ef112b17e04f8a3196557a2d7c1
-timeCreated: 1521431930
+guid: 208f8cff5a457d440935588fc7e2cf0a
+timeCreated: 1521530414
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Plane02
-    100004: objPlane02
-    100006: objObject01
+    100002: Object02
     400000: //RootNode
-    400002: Plane02
-    400004: objPlane02
-    400006: objObject01
-    2300000: Plane02
-    2300002: objPlane02
-    2300004: objObject01
-    3300000: Plane02
-    3300002: objPlane02
-    3300004: objObject01
-    4300000: Plane02
-    4300002: objPlane02
-    4300004: objObject01
+    400002: Object02
+    2300000: Object02
+    3300000: Object02
+    4300000: Object02
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Plane02Mat
-    second: {fileID: 2100000, guid: 7168ffb21de1a59468f68169345ef3f8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: objObject01Mat
-    second: {fileID: 2100000, guid: 3dfc369a451a42d40b0a6216eb3acc02, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: objPlane02Mat
-    second: {fileID: 2100000, guid: 4a0b9e8ded30bda47990c1a5ede34b4e, type: 2}
+      name: Object02Mat
+    second: {fileID: 2100000, guid: ac7ac8e851ee97447b4a539aa56a6412, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

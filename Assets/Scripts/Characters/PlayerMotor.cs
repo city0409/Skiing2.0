@@ -66,23 +66,36 @@ public class PlayerMotor : MonoBehaviour
         {
             Rolling();
         }
-        else if (controller.MyState.IsOnGround && !m_left_btn_clicked)
+        else if (
+            //controller.MyState.IsOnGround && 
+            !m_left_btn_clicked)
         {
             //Vector3 tagPos = transform.position + Vector3.right * Time.deltaTime * 100;
+            Vector2 nextFramePos = transform.position;
+            nextFramePos.x += speed * Time.deltaTime;
 
+            RaycastHit2D hit = Physics2D.Raycast(nextFramePos, Vector3.down, transRayDown, layerMaskGround);
 
             //RaycastHit2D hit2 = Physics2D.Raycast(tagPos, -Vector3.up, transRayDown, layerMaskGround);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, transRayDown, layerMaskGround);
+            //RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, transRayDown, layerMaskGround);
             if (hit.collider != null) {
-                Vector3 goundNormal = hit.normal;
-                print("normal" + goundNormal);
-                Vector3 goundNormalTang = Vector3.Cross(goundNormal, Vector3.forward);
-                print("goundNormalTang" + goundNormalTang);
-                print(transform.forward);
 
-                Quaternion tag = Quaternion.LookRotation(goundNormalTang);
-                tag *= relativeRotation;
-                transform.rotation = tag;
+                Vector2 v2 = Vector2.up * 0.7f + hit.point;
+                transform.position = v2;
+                Vector3 normal = hit.normal;
+                Quaternion direction = Quaternion.LookRotation(Vector3.Cross(normal, Vector3.forward));
+                direction *= relativeRotation;
+                transform.rotation = direction;
+
+                //Vector3 goundNormal = hit.normal;
+                //print("normal" + goundNormal);
+                //Vector3 goundNormalTang = Vector3.Cross(goundNormal, Vector3.forward);
+                //print("goundNormalTang" + goundNormalTang);
+                //print(transform.forward);
+
+                //Quaternion tag = Quaternion.LookRotation(goundNormalTang);
+                //tag *= relativeRotation;
+                //transform.rotation = tag;
             }
 
             //rig.AddForce(new Vector2(moveForce, -gravity), ForceMode2D.Force);
