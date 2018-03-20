@@ -10,14 +10,14 @@ public class HomeUIPannel : MonoBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button rankButton;
 
-    [SerializeField]
-    private Transform guidepost;
-    [SerializeField]
-    private Transform QQMountain;
+    [SerializeField] private Transform down_Items;
+    [SerializeField] private Transform up_Items;
+    
 
     private CanvasGroup homeUICanvasGroup;
+    //[SerializeField] private CanvasGroup rankCanvasGroup;
 
-    private bool isRank=false;
+    
     private Tweener EnlargeButton;
 
     private void Awake()
@@ -27,15 +27,14 @@ public class HomeUIPannel : MonoBehaviour
     private void Start() 
 	{
         Sequence seq = DOTween.Sequence();
-        EnlargeButton = startGameButton.transform.DOScale(2, 1);
+        //EnlargeButton = startGameButton.transform.DOScale(2, 1);
 
-        guidepost.DOMoveY(-614.36f, 2f, false);
 
     }
 
     private void Update () 
 	{
-        if (isRank)
+        if (UIManager.Instance.IsRank)
         {
             //rankButton.GetComponent<RectTransform>().localScale += new Vector3(0.2f, 0.2f, 0.2f);
         }
@@ -43,23 +42,27 @@ public class HomeUIPannel : MonoBehaviour
 
     public void RankGame()
     {
-        isRank = true;
+        UIManager.Instance.IsRank = true;
 
-        //StartCoroutine(EnlargeButton());
         UIManager.Instance.FaderOn(true, 1f);
+
     }
 
     public void StartGame()
     {
         homeUICanvasGroup.interactable = false;
         homeUICanvasGroup.blocksRaycasts = false;
-        GameManager.Instance.GameStartEvent();
-    }
 
-    //private IEnumerator EnlargeButton()
-    //{
-    //    //rankButton.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
-    //    yield return new WaitForSeconds(10f);
-    //    print("!!!!!");
-    //}
+        down_Items.DOMoveY(-500f, 2f, true);
+        up_Items.DOMoveY(1500f, 1f, true);
+        
+        GameManager.Instance.GameStartEvent();
+        StartCoroutine(EnFadeButton());
+    }
+    private IEnumerator EnFadeButton()
+    {
+        yield return new WaitForSeconds(2f);
+        homeUICanvasGroup.alpha = 0;
+    }
+    
 }

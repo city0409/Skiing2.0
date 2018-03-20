@@ -22,9 +22,12 @@ public class MainCamera : MonoBehaviour
 
     private void Update()
     {
-        if (isEnlargeCamera && camera.orthographicSize >= 7f)
+        if (isEnlargeCamera && camera.orthographicSize >= 8.8f)
         {
-            camera.orthographicSize -= 0.1f;
+            camera.orthographicSize -= 0.05f;
+            //y = camera.transform.position.y - 0.1f;
+            //camera.transform.position = new Vector3(camera.transform.position.x, y, camera.transform.position.z);
+            camera.transform.SetLocalXY(camera.transform.position.x + 0.1f,camera.transform.position.y - 0.2f); //扩展方法SetLocalY
         }
     }
 

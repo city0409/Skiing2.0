@@ -10,8 +10,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 tempPos;
     [SerializeField] private LayerMask mask;
 
-    private bool isFollowBedBoy = false;
-    private bool isFollowSkiBoy = false;
+    private bool isFollowBedBoy = true;
+    private bool isFollowSkiBoy = true;
 
     private void Awake () 
 	{

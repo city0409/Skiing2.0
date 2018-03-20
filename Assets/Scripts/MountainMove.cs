@@ -17,6 +17,6 @@ public class MountainMove : MonoBehaviour
 
     private void Update()
     {
-        mat.mainTextureOffset += new Vector2(Time.deltaTime * Player.Speed / 40, 0f);
+        //mat.mainTextureOffset += new Vector2(Time.deltaTime * Player.Speed / 40, 0f);
     }
 }

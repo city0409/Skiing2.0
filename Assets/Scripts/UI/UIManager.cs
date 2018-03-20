@@ -8,13 +8,17 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private HomeUIPannel homeUIPannel;
-
+    [SerializeField] private RankPannel rankPannel;
+    private bool isRank = false;
+    public bool IsRank { get { return isRank; } set { isRank = value; } }
 
     [SerializeField]
     private Image fader;
     [SerializeField]
     private PauseMenu pauseMenu;
     public PauseMenu PauseMenu { get { return pauseMenu; } }
+
+    
 
     protected override void Awake()
     {
