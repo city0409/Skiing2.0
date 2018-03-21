@@ -26,12 +26,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private LayerMask layerMaskStone;
     [SerializeField] private LayerMask layerMaskSnowman;
     [SerializeField] private LayerMask layerMaskSnow;
-    //private Quaternion relativeRotation;
-    [SerializeField]
-    private float transRayDown = 1.2f;
-    [SerializeField]
-    private LayerMask layerMaskGround;
-    //private float speed=10f;
+
 
     protected override void Awake()
     {
@@ -46,7 +41,6 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         myState.IsSkiing = true;
-
     }
 
     private void Update()
@@ -65,13 +59,12 @@ public class PlayerController : Singleton<PlayerController>
         {
             GoYou();
         }
-        playerMotor.Movement(m_left_btn_clicked, ground_normal);
     }
 
     private void FixedUpdate()
     {
         DetacteRaycast();
-        //playerMotor.Movement(m_left_btn_clicked, ground_normal);
+        playerMotor.Movement(m_left_btn_clicked, ground_normal);
         m_left_btn_clicked = false;
 
         if (myState.IsLie)

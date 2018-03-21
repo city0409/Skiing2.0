@@ -20,7 +20,6 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private LayerMask layerMaskGround;
     [SerializeField] private float rolling_min_time = 1.0f;
     [SerializeField] private float rolling_thresh = 30f;
-    [SerializeField] private float transRayDown = 1.2f;
     private float cur_rolling_time = 0f;
     private float rolling_speed;
 
@@ -33,7 +32,6 @@ public class PlayerMotor : MonoBehaviour
     public bool Reset { get { return reset; } set { reset = value; } }
 
     private Quaternion initRotation;
-    private Quaternion relativeRotation;
 
     private void Awake()
     {
@@ -45,7 +43,6 @@ public class PlayerMotor : MonoBehaviour
     {
         initRotation = transform.rotation;
         rolling_speed = 360 / rolling_min_time;
-        relativeRotation = Quaternion.Inverse(Quaternion.LookRotation(Vector3.right) * transform.rotation);
     }
 
     public void Movement(bool m_left_btn_clicked, Vector3 ground_normal)
@@ -66,50 +63,18 @@ public class PlayerMotor : MonoBehaviour
         {
             Rolling();
         }
-        else if (
-            //controller.MyState.IsOnGround && 
-            !m_left_btn_clicked)
+        else if (controller.MyState.IsOnGround && !m_left_btn_clicked)
         {
-            //Vector3 tagPos = transform.position + Vector3.right * Time.deltaTime * 100;
-            Vector2 nextFramePos = transform.position;
-            nextFramePos.x += speed * Time.deltaTime;
-
-            RaycastHit2D hit = Physics2D.Raycast(nextFramePos, Vector3.down, transRayDown, layerMaskGround);
-
-            //RaycastHit2D hit2 = Physics2D.Raycast(tagPos, -Vector3.up, transRayDown, layerMaskGround);
-            //RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, transRayDown, layerMaskGround);
-            if (hit.collider != null) {
-
-                Vector2 v2 = Vector2.up * 0.7f + hit.point;
-                transform.position = v2;
-                Vector3 normal = hit.normal;
-                Quaternion direction = Quaternion.LookRotation(Vector3.Cross(normal, Vector3.forward));
-                direction *= relativeRotation;
-                transform.rotation = direction;
-
-                //Vector3 goundNormal = hit.normal;
-                //print("normal" + goundNormal);
-                //Vector3 goundNormalTang = Vector3.Cross(goundNormal, Vector3.forward);
-                //print("goundNormalTang" + goundNormalTang);
-                //print(transform.forward);
-
-                //Quaternion tag = Quaternion.LookRotation(goundNormalTang);
-                //tag *= relativeRotation;
-                //transform.rotation = tag;
-            }
-
-            //rig.AddForce(new Vector2(moveForce, -gravity), ForceMode2D.Force);
-            //Vector3 v = rig.velocity;
-            //Vector3 correct_dir = v - Vector3.Dot(ground_normal, v) * ground_normal;
-            //correct_dir.Normalize();
-            //rig.velocity = new Vector2(correct_dir.x, correct_dir.y) * v.magnitude;
-
-            //transform.position = hit2.point;
+            rig.AddForce(new Vector2(moveForce, -gravity), ForceMode2D.Force);
+            Vector3 v = rig.velocity;
+            Vector3 correct_dir = v - Vector3.Dot(ground_normal, v) * ground_normal;
+            correct_dir.Normalize();
+            rig.velocity = new Vector2(correct_dir.x, correct_dir.y) * v.magnitude;
         }
 
-        //speed = Mathf.Clamp(Vector3.SqrMagnitude(rig.velocity), 0f, maxSpeed);
+        speed = Mathf.Clamp(Vector3.SqrMagnitude(rig.velocity), 0f, maxSpeed);
 
-        //rig.velocity = rig.velocity.normalized * speed;
+        rig.velocity = rig.velocity.normalized * speed;
     }
 
     private void Roll()
@@ -182,16 +147,5 @@ public class PlayerMotor : MonoBehaviour
         }
         rig.velocity = cur_velocity;
         transform.rotation = initRotation;
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawLine(transform.position, transform.position - transform.up * transRayDown);
-       
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position - Vector3.up * transRayDown);
     }
 }

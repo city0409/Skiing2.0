@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114607634751773776}
   - component: {fileID: 114744809635870222}
   - component: {fileID: 114720209169967172}
+  - component: {fileID: 50644869547292800}
   m_Layer: 12
   m_Name: MainPlayer
   m_TagString: Player
@@ -251,13 +252,33 @@ Transform:
   m_Father: {fileID: 4412819055368132}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.326}
+--- !u!50 &50644869547292800
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282245662464454}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 10
+  m_GravityScale: 5
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61708726545102652
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282245662464454}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 100
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -377,7 +398,7 @@ MonoBehaviour:
   visual1: {fileID: 1516242468075122}
   visual2: {fileID: 1492730232641742}
   visual3: {fileID: 1709938680460564}
-  speed: 10
+  speed: 0
   jumpForce: 30
   moveForce: 10
   gravity: 20
@@ -387,7 +408,6 @@ MonoBehaviour:
     m_Bits: 256
   rolling_min_time: 1
   rolling_thresh: 30
-  transRayDown: 2
 --- !u!114 &114720209169967172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,10 +446,6 @@ MonoBehaviour:
   layerMaskSnow:
     serializedVersion: 2
     m_Bits: 2048
-  transRayDown: 1.2
-  layerMaskGround:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!212 &212272262897427144
 SpriteRenderer:
   m_ObjectHideFlags: 1
