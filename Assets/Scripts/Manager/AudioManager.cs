@@ -20,20 +20,14 @@ public class AudioManager : PersistentSingleton<AudioManager>
     [SerializeField]
     private AudioClip bgClip2;
 
+    private void Awake()
+    {
+        _backgroundMusic1 = GetComponent<AudioSource>();
+    }
     private void OnEnable()
     {
         onGameStart = OnGameStart;
         EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
-    }
-
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnDisable()

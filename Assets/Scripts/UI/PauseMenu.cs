@@ -11,19 +11,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
-    private Button pauseButton;
-    [SerializeField]
-    private Button continueButton;
-    [SerializeField]
-    private Button restartButton;//player.position=0,volocity=0
-    [SerializeField]
-    private Button homeButton;
-
-    [SerializeField]
     private AudioMixerSnapshot paused, unpaused;
 
     [SerializeField]
     private CanvasGroup pauseGroup;
+    [SerializeField]
+    private CanvasGroup rankGroup;
     private List<CanvasGroup> canvasGroupList = new List<CanvasGroup>();
 
     private void Start()
@@ -66,6 +59,16 @@ public class PauseMenu : MonoBehaviour
         LoadSceneManager.LoadScene(1);
     }
 
+    public void BackHomeRank()
+    {
+        //GameManager.Instance.Reset();
+        UIManager.Instance.FaderOn(true, 1f);
+        UIManager.Instance.IsRank = false;
+        rankGroup.alpha = 0;
+        rankGroup.interactable = false;
+        rankGroup.blocksRaycasts = false;
+    }
+
     public void Lowpass()
     {
         if (Time.timeScale == 0)
@@ -91,7 +94,6 @@ public class PauseMenu : MonoBehaviour
     {
         foreach (var item in canvasGroupList)
         {
-            print("@@@@");
             item.alpha = 0;
             item.interactable = false;
             item.blocksRaycasts = false;

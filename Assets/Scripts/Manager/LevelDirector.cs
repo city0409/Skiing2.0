@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class LevelDirector : Singleton<LevelDirector>
 {
-    [SerializeField] private GameObject GroundTestPos1;
-    [SerializeField] private GameObject GroundTestPos2;
+    [SerializeField] private GameObject Ground001;
+    [SerializeField] private GameObject Ground002;
     [SerializeField] private PlayerController playerController;
     public PlayerController PlayerController { get { return playerController; } set { playerController = value; } }
     [SerializeField] private PlayerMotor playerMotor;
@@ -38,8 +38,8 @@ public class LevelDirector : Singleton<LevelDirector>
         //playerMotor.Visual2.SetActive(false);//这两句主角会不见
         //playerMotor.Visual3.SetActive(false);
         //playerMotor.Reset = true;
-        GroundTestPos1.transform.position = initGround2Pos;
-        GroundTestPos2.transform.position = initGround2Pos;
+        Ground001.transform.position = initGround2Pos;
+        Ground002.transform.position = initGround2Pos;
     }
 
     private void AddHistoryScore()
