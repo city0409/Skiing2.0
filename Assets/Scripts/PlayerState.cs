@@ -16,4 +16,6 @@ public class PlayerState
 
     public bool IsLie { get; set; }
 
+    public bool IsDie { get; set; }
+
 }

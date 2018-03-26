@@ -13,10 +13,7 @@ public class HomeUIPannel : MonoBehaviour
     [SerializeField] private Transform down_Items;
     [SerializeField] private Transform up_Items;
     
-
     private CanvasGroup homeUICanvasGroup;
-    //[SerializeField] private CanvasGroup rankCanvasGroup;
-
     
     private Tweener EnlargeButton;
 
@@ -27,17 +24,6 @@ public class HomeUIPannel : MonoBehaviour
     private void Start() 
 	{
         Sequence seq = DOTween.Sequence();
-        //EnlargeButton = startGameButton.transform.DOScale(2, 1);
-
-
-    }
-
-    private void Update () 
-	{
-        if (UIManager.Instance.IsRank)
-        {
-            //rankButton.GetComponent<RectTransform>().localScale += new Vector3(0.2f, 0.2f, 0.2f);
-        }
     }
 
     public void RankGame()
@@ -57,6 +43,7 @@ public class HomeUIPannel : MonoBehaviour
         up_Items.DOMoveY(1500f, 1f, true);
         
         GameManager.Instance.GameStartEvent();
+        GameManager.Instance.BeAboutToDieEvent();
         StartCoroutine(EnFadeButton());
     }
     private IEnumerator EnFadeButton()
@@ -64,5 +51,18 @@ public class HomeUIPannel : MonoBehaviour
         yield return new WaitForSeconds(2f);
         homeUICanvasGroup.alpha = 0;
     }
-    
+
+    public void BackHomeRank()
+    {
+        //GameManager.Instance.Reset();
+        UIManager.Instance.FaderOn(true, 1f);
+        UIManager.Instance.IsRank = false;
+    }
+
+    public void RestartGame()
+    {
+        UIManager.Instance.FaderOn(true, 1f);
+        UIManager.Instance.IsRank = false;
+        StartGame();
+    }
 }

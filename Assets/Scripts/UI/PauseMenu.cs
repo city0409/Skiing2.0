@@ -15,8 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private CanvasGroup pauseGroup;
-    [SerializeField]
-    private CanvasGroup rankGroup;
+    
     private List<CanvasGroup> canvasGroupList = new List<CanvasGroup>();
 
     private void Start()
@@ -57,16 +56,6 @@ public class PauseMenu : MonoBehaviour
         DisplayMenu();
         UIManager.Instance.FaderOn(true, 1f);
         LoadSceneManager.LoadScene(1);
-    }
-
-    public void BackHomeRank()
-    {
-        //GameManager.Instance.Reset();
-        UIManager.Instance.FaderOn(true, 1f);
-        UIManager.Instance.IsRank = false;
-        rankGroup.alpha = 0;
-        rankGroup.interactable = false;
-        rankGroup.blocksRaycasts = false;
     }
 
     public void Lowpass()
