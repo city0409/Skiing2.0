@@ -9,16 +9,13 @@ public class CameraFollow : MonoBehaviour
     private Action onGameStart;
     private bool isEnlargeCamera = false;
 
-    [SerializeField] private Transform mainPlayer;
-    [SerializeField] private Transform bedBoy;
-    private Transform currentPlayer;
+    [SerializeField] private GameObject bedBoy;
+    private GameObject currentPlayer;
 
     [SerializeField] private Transform bgText;
 
     private Vector3 tempPos;
     [SerializeField] private LayerMask mask;
-
-    private bool isFollowSkiBoy = false;
 
     private Vector2 change;
 
@@ -36,7 +33,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (isEnlargeCamera && camera.orthographicSize >= 8.8f)
+        if (isEnlargeCamera && camera.orthographicSize >= 9.5f)
         {
             camera.orthographicSize -= 0.05f;
             //y = camera.transform.position.y - 0.1f;
@@ -47,20 +44,16 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate () 
 	{
-        if (Input.GetKeyDown(KeyCode.A))
+        if (LevelDirector.Instance.IsFollowSkiBoy)
         {
-            isFollowSkiBoy = true;
-            
+            currentPlayer = LevelDirector.Instance .PlayerOBJ;
+            change = new Vector2(13, -2);
         }
         if (isEnlargeCamera)
         {
             bgText.transform.position = GetComponent<Transform>().position + new Vector3(0f, 0f, 20f);
-            if (isFollowSkiBoy)
-            {
-                currentPlayer = mainPlayer;
-                change = new Vector2(13, -2);
-            }
-            RaycastHit2D hit = Physics2D.Raycast(currentPlayer.position, Vector2.down, 30f, mask);
+            
+            RaycastHit2D hit = Physics2D.Raycast(currentPlayer.transform.position, Vector2.down, 30f, mask);
             if (hit == true)
             {
                 tempPos = Vector2.Lerp(tempPos, hit.point + change, Time.deltaTime * 5);
@@ -79,6 +72,14 @@ public class CameraFollow : MonoBehaviour
     private void OnGameStart()
     {
         isEnlargeCamera = true;
+        StartCoroutine(FollowBedBoy());
+    }
+
+    IEnumerator FollowBedBoy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        change = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), new Vector2(13, -2), 2f);
+
     }
 
     private void OnDrawGizmosSelected()
@@ -86,7 +87,7 @@ public class CameraFollow : MonoBehaviour
         if (currentPlayer != null)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(currentPlayer.position, currentPlayer.position + new Vector3(0, -30, 0));
+            Gizmos.DrawLine(currentPlayer.transform.position, currentPlayer.transform.position + new Vector3(0, -30, 0));
         }
     } 
 }

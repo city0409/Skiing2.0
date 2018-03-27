@@ -7,14 +7,21 @@ using System;
 public class BedBoy : MonoBehaviour 
 {
     [SerializeField]
+    private Transform posBornStone;
+
+    [SerializeField]
+    private GameObject zzzFx;
+    [SerializeField]
     private float transRayDown = 1.2f;
     [SerializeField]
     private LayerMask layerMaskGround;
 
     private Action onBedBoyBorn;
-    private float speed = 28f;
+    private float speed = 30f;
     private Quaternion relativeRotation;
     private bool isBedBoyGo = false;
+    private bool isPlayerStayed = true;
+
 
     private void Start()
     {
@@ -26,14 +33,22 @@ public class BedBoy : MonoBehaviour
         onBedBoyBorn = OnBedBoyBorn;
         EventService.Instance.GetEvent<BedBoyBornEvent>().Subscribe(onBedBoyBorn);
     }
-    private void Update () 
-	{
+    private void Update()
+    {
         if (isBedBoyGo)
         {
             MoveBedBoy();
+            Destroy(zzzFx);
+            if (isPlayerStayed && transform.position.x >= posBornStone.position.x )
+            {
+                LevelDirector.Instance.IsFollowSkiBoy = true;
+                Destroy(gameObject);
+
+                LevelDirector.Instance.InitPlayer();
+                isPlayerStayed = false;
+            }
         }
     }
-
     private void OnBedBoyBorn()
     {
         isBedBoyGo = true;
@@ -62,4 +77,5 @@ public class BedBoy : MonoBehaviour
         EventService.Instance.GetEvent<BedBoyBornEvent>().UnSubscribe(onBedBoyBorn);
     }
 
+   
 }

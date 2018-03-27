@@ -13,7 +13,7 @@ public class SnowSlide : MonoBehaviour
     [SerializeField] private LayerMask layerMaskGround;
 
     private Action onSlideBorn;
-    private float speed = 30f;
+    private float speed = 40f;
     private Quaternion relativeRotation;
     private bool isSlideGo = false;
 
@@ -62,12 +62,12 @@ public class SnowSlide : MonoBehaviour
 
     public void MoveSlide()
     {
-        if (LevelDirector.Instance.PlayerController.MyState.IsDie)
-        {
-            return;
-        }
-        else
-        {
+        //if (LevelDirector.Instance.PlayerOBJ.GetComponent<PlayerController>().MyState.IsDie)
+        //{
+        //    return;
+        //}
+        //else
+        //{
             Vector2 nextFramePos = transform.position;
             nextFramePos.x += speed * Time.deltaTime;
 
@@ -81,7 +81,7 @@ public class SnowSlide : MonoBehaviour
                 direction *= relativeRotation;
                 transform.rotation = direction;
             }
-        }
+        //}
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

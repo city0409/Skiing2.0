@@ -11,12 +11,13 @@ public class PlayerMotor : MonoBehaviour
     public GameObject Visual2 { get { return visual1; } set { visual1 = value; } }
     public GameObject Visual3 { get { return visual1; } set { visual1 = value; } }
 
-    [SerializeField] private float speed;
-    public float Speed { get { return speed; } set { speed = value; } }
-    [SerializeField] private float jumpForce = 20f;
+    //[SerializeField]
+    private float speed;
+    //public float Speed { get { return speed; } set { speed = value; } }
+    [SerializeField] private float jumpForce;
     [SerializeField] private float moveForce = 10f;
     [SerializeField] private float gravity = 0.0f;
-    [SerializeField] private float maxSpeed = 30f;
+    [SerializeField] private float maxSpeed = 20f;
     [SerializeField] private LayerMask layerMaskGround;
     [SerializeField] private float rolling_min_time = 1.0f;
     [SerializeField] private float rolling_thresh = 30f;
@@ -53,7 +54,8 @@ public class PlayerMotor : MonoBehaviour
         }
         if (controller.MyState.IsOnGround && m_left_btn_clicked)
         {
-            rig.AddForce(new Vector2(jumpForce * ground_normal.x, jumpForce * ground_normal.y), ForceMode2D.Impulse);
+            //rig.AddForce(new Vector2(jumpForce * ground_normal.x , jumpForce * ground_normal.y), ForceMode2D.Impulse);
+            rig.AddForce(new Vector2(jumpForce * ground_normal.x + jumpForce * ground_normal.y, 0.6f* jumpForce * ground_normal.y), ForceMode2D.Impulse);
         }
         else if (m_left_btn_clicked && !controller.MyState.IsOnGround && !controller.MyState.IsRollling)
         {

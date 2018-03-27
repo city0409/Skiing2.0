@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BgMove : MonoBehaviour
 {
-    [SerializeField] private Transform Player;
+    private GameObject player;
     [SerializeField] private Transform PosTarget;
     [SerializeField] private Transform BgPos1;
     [SerializeField] private Transform BgPos2;
@@ -16,9 +16,20 @@ public class BgMove : MonoBehaviour
         dis = BgPos2.position - BgPos1.position;
     }
 
+    private void OnEnable()
+    {
+        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().Subscribe(OnPlayerSpawn);
+    }
+
+    private void OnPlayerSpawn() {
+        player = LevelDirector.Instance.PlayerOBJ;
+    }
+
     void Update()
     {
-        if (Player.position.x >= PosTarget.position.x)
+        if (player == null) return;
+
+        if (player.transform.position.x >= PosTarget.position.x)
         {
             index++;
             if (index % 2 == 0)
@@ -32,6 +43,11 @@ public class BgMove : MonoBehaviour
             PosTarget.position += dis;
         }
 
+    }
+
+    private void OnDisable()
+    {
+        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().UnSubscribe(OnPlayerSpawn);
     }
     //private void OnDrawGizmosSelected()
     //{

@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         //UIManager.Instance.FaderOn(true, 0.1f);
         //LevelDirector.Instance.PlayerController.GetComponentInChildren<TrailRenderer>().isVisible = false;
 
-        LevelDirector.Instance.InitPlayer();
+        //LevelDirector.Instance.InitPlayer();
     }
     public void BackHome()
     {

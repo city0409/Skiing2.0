@@ -7,10 +7,11 @@ public class LevelDirector : Singleton<LevelDirector>
 {
     [SerializeField] private GameObject Ground001;
     [SerializeField] private GameObject Ground002;
-    [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get { return playerController; } set { playerController = value; } }
-    [SerializeField] private PlayerMotor playerMotor;
-    public PlayerMotor PlayerMotor { get { return playerMotor; } set { playerMotor = value; } }
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject playerOBJ;
+    public GameObject PlayerOBJ { get { return playerOBJ; } private set { playerOBJ = value; } }
+    private bool isFollowSkiBoy = false;
+    public bool IsFollowSkiBoy { get { return isFollowSkiBoy; } set { isFollowSkiBoy = value; } }
 
     [SerializeField] private Vector3 initPlayerPos;
     [SerializeField] private Vector3 initGround2Pos;
@@ -22,24 +23,28 @@ public class LevelDirector : Singleton<LevelDirector>
 
     private PlayerData data;
 
-    
+
     private void Start () 
 	{
-        playerController.MyState.IsSkiing = true;
-        InitPlayer();
+        InitBG();
     }
 	
-	public void InitPlayer () 
+    public void InitBG()
+    {
+        Ground001.transform.position = initGround2Pos;
+        Ground002.transform.position = initGround2Pos;
+    }
+
+    public void InitPlayer () 
 	{
-        playerController.transform.position = initPlayerPos;
-        playerController.GetComponentInChildren<TrailRenderer>().time = 0.1f;
-        playerMotor.Cur_velocity = Vector2.zero;
+        playerOBJ = Instantiate(playerPrefab, initPlayerPos, Quaternion.identity);
+        playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
+        playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.1f;
+        playerOBJ.GetComponent<PlayerMotor>().Cur_velocity = Vector2.zero;
         //playerMotor.Visual1.SetActive(true);
         //playerMotor.Visual2.SetActive(false);//这两句主角会不见
         //playerMotor.Visual3.SetActive(false);
         //playerMotor.Reset = true;
-        Ground001.transform.position = initGround2Pos;
-        Ground002.transform.position = initGround2Pos;
     }
 
     private void AddHistoryScore()

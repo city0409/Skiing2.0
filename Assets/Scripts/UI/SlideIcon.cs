@@ -25,8 +25,10 @@ public class SlideIcon : MonoBehaviour
     {
         rectTransfrom.DOLocalMoveX(116f, 1f, true);
         yield return new WaitForSeconds(1f);
-        transform.DOShakePosition(8f, 3f, 80, 180, false, false);
-        yield return new WaitForSeconds(8f);
+        transform.DOShakePosition(3f, 3f, 80, 180, false, false);
+        yield return new WaitForSeconds(3f);
+        transform.DOScale(0.75f,5f);
+        yield return new WaitForSeconds(5f);
         rectTransfrom.DOLocalMoveX(-116f, 1.5f, true);
     }
 
