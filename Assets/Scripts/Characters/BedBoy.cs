@@ -43,8 +43,8 @@ public class BedBoy : MonoBehaviour
             {
                 LevelDirector.Instance.IsFollowSkiBoy = true;
                 Destroy(gameObject);
-
                 LevelDirector.Instance.InitPlayer();
+                GameManager.Instance.OnPlayerSpawnEvent();
                 isPlayerStayed = false;
             }
         }

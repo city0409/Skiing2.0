@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMotor : MonoBehaviour 
+public class PlayerMotor : Singleton<PlayerMotor>
 {
     [SerializeField] private GameObject visual1;
     [SerializeField] private GameObject visual2;
@@ -140,7 +140,7 @@ public class PlayerMotor : MonoBehaviour
         if (cur_velocity.magnitude < 0.1f)
         {
             cur_velocity = Vector2.zero;
-            Debug.Log("Lie" + rig.velocity);
+            //Debug.Log("Lie" + rig.velocity);
             rig.bodyType = RigidbodyType2D.Static;
         }
         else

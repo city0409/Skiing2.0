@@ -84,7 +84,6 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (!playerMotor.Reset)
         {
-            Debug.Log("DetacteRaycast");
             return;
         }
 
@@ -172,7 +171,6 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (is_lie)
             {
-                Debug.Log("jiance");
                 //myState.IsJump = false;
                 myState.IsLie = true;
             }

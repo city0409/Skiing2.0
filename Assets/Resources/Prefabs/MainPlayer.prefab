@@ -277,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 1516242468075122}
   m_LocalRotation: {x: -0, y: -0, z: -0.0028489977, w: 0.999996}
   m_LocalPosition: {x: -0, y: 0.33, z: -0.21}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4412819055368132}
   m_RootOrder: 1
@@ -365,7 +365,7 @@ TrailRenderer:
   m_Time: 0.1
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.6
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -515,7 +515,7 @@ MonoBehaviour:
   visual1: {fileID: 1516242468075122}
   visual2: {fileID: 1492730232641742}
   visual3: {fileID: 1709938680460564}
-  jumpForce: 300
+  jumpForce: 150
   moveForce: 30
   gravity: 5
   maxSpeed: 30
@@ -728,7 +728,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 77eb7de5cd0999743a20272b80a7d240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae736dbd5c07ec647ac3abbd4987b638, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

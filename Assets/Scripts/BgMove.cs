@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BgMove : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BgMove : MonoBehaviour
     [SerializeField] private Transform BgPos2;
     private Vector3 dis;
     private int index = 0;
+    private Action onPlayerSpawn;
 
     private void Awake()
     {
@@ -18,7 +20,8 @@ public class BgMove : MonoBehaviour
 
     private void OnEnable()
     {
-        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().Subscribe(OnPlayerSpawn);
+        onPlayerSpawn = OnPlayerSpawn;
+        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().Subscribe(onPlayerSpawn);
     }
 
     private void OnPlayerSpawn() {
@@ -27,7 +30,7 @@ public class BgMove : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null) { print("@@@@@@@@@@@"); return; }
 
         if (player.transform.position.x >= PosTarget.position.x)
         {
@@ -47,7 +50,7 @@ public class BgMove : MonoBehaviour
 
     private void OnDisable()
     {
-        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().UnSubscribe(OnPlayerSpawn);
+        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().UnSubscribe(onPlayerSpawn);
     }
     //private void OnDrawGizmosSelected()
     //{

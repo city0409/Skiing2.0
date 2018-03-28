@@ -47,7 +47,7 @@ public class CameraFollow : MonoBehaviour
         if (LevelDirector.Instance.IsFollowSkiBoy)
         {
             currentPlayer = LevelDirector.Instance .PlayerOBJ;
-            change = new Vector2(13, -2);
+            change = new Vector2(13f, -1.5f);
         }
         if (isEnlargeCamera)
         {

@@ -8,7 +8,7 @@ public class LevelDirector : Singleton<LevelDirector>
     [SerializeField] private GameObject Ground001;
     [SerializeField] private GameObject Ground002;
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject playerOBJ;
+    private GameObject playerOBJ;
     public GameObject PlayerOBJ { get { return playerOBJ; } private set { playerOBJ = value; } }
     private bool isFollowSkiBoy = false;
     public bool IsFollowSkiBoy { get { return isFollowSkiBoy; } set { isFollowSkiBoy = value; } }
@@ -22,7 +22,9 @@ public class LevelDirector : Singleton<LevelDirector>
     public int ScoreAward { get { return scoreAward; } set { scoreAward = value; } }
 
     private PlayerData data;
-
+    [SerializeField]
+    private GameObject bedBoyOBJ;
+    public GameObject BedBoyOBJ { get { return bedBoyOBJ; } private set { bedBoyOBJ = value; } }
 
     private void Start () 
 	{
@@ -41,10 +43,6 @@ public class LevelDirector : Singleton<LevelDirector>
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
         playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.1f;
         playerOBJ.GetComponent<PlayerMotor>().Cur_velocity = Vector2.zero;
-        //playerMotor.Visual1.SetActive(true);
-        //playerMotor.Visual2.SetActive(false);//这两句主角会不见
-        //playerMotor.Visual3.SetActive(false);
-        //playerMotor.Reset = true;
     }
 
     private void AddHistoryScore()

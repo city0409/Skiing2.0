@@ -74,12 +74,17 @@ public class GameManager : PersistentSingleton<GameManager>
         EventService.Instance.GetEvent<GameStartEvent>().Publish();
         EventService.Instance.GetEvent<SlideBornEvent>().Publish();
     }
-
+    
     public void BedBoyBornEvent()
     {
         EventService.Instance.GetEvent<BedBoyBornEvent>().Publish();
     }
-    
+
+    public void OnPlayerSpawnEvent()
+    {
+        EventService.Instance.GetEvent<OnPlayerSpawnEvent>().Publish();
+    }
+
     public void BeAboutToDieEvent()
     {
         EventService.Instance.GetEvent<BeAboutToDieEvent>().Publish();
