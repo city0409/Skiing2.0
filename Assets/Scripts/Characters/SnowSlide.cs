@@ -83,15 +83,14 @@ public class SnowSlide : MonoBehaviour
             }
         //}
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
 
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        levelDirector.Player.MyState.IsLie=true;
-    //        //弹窗todo
-    //        Time.timeScale = 0f;
-    //        //Destroy(collision.gameObject);
-    //    }
-    //}
+        if (collision.gameObject.tag == "Player")
+        {
+            LevelDirector.Instance.PlayerOBJ.GetComponent<PlayerController>().MyState.IsLie = true;
+            GameManager.Instance.PlayerDeadEvent();
+            Time.timeScale = 0f;
+        }
+    }
 }

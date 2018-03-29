@@ -15,7 +15,4 @@ public class PlayerState
     public bool IsRideSnowMan { get; set; }
 
     public bool IsLie { get; set; }
-
-    public bool IsDie { get; set; }
-
 }

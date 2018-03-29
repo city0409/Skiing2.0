@@ -12,6 +12,9 @@ public class InputManager : Singleton<InputManager>
 	
 	private void Update () 
 	{
-		
+        if (Input .GetKeyDown(KeyCode.E))
+        {
+            GameManager.Instance.PlayerDeadEvent();
+        }
 	}
 }

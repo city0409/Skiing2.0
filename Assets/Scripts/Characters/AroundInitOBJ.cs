@@ -39,7 +39,7 @@ public class AroundInitOBJ : MonoBehaviour
     }
     private void Update () 
 	{
-        if (player == null) { print("#########"); return; }
+        if (player == null)  return; 
         timer += Time.deltaTime;
         if (timer > 2)
         {

@@ -30,7 +30,7 @@ public class BgMove : MonoBehaviour
 
     void Update()
     {
-        if (player == null) { print("@@@@@@@@@@@"); return; }
+        if (player == null)  return; 
 
         if (player.transform.position.x >= PosTarget.position.x)
         {

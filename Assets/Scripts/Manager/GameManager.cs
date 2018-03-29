@@ -90,11 +90,6 @@ public class GameManager : PersistentSingleton<GameManager>
         EventService.Instance.GetEvent<BeAboutToDieEvent>().Publish();
     }
 
-    public void LoadinGameEvent()
-    {
-        EventService.Instance.GetEvent<LoadinGameEvent>().Publish();
-    }
-
     public void PlayerDeadEvent()
     {
         EventService.Instance.GetEvent<PlayerDeadEvent>().Publish();
