@@ -7,8 +7,8 @@ using DG.Tweening;
 
 public class HomeUIPannel : MonoBehaviour 
 {
-    [SerializeField] private Button startGameButton;
-    [SerializeField] private Button rankButton;
+    //[SerializeField] private Button startGameButton;
+    //[SerializeField] private Button rankButton;
 
     [SerializeField] private Transform down_Items;
     [SerializeField] private Transform up_Items;
@@ -28,10 +28,8 @@ public class HomeUIPannel : MonoBehaviour
 
     public void RankGame()
     {
-        UIManager.Instance.IsRank = true;
-
         UIManager.Instance.FaderOn(true, 1f);
-
+        UIManager.Instance.IsRank = true;
     }
 
     public void StartGame()

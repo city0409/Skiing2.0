@@ -6,6 +6,7 @@ using UnityEngine;
 public class AudioManager : PersistentSingleton<AudioManager>
 {
     private Action onGameStart;
+    private Action onGameEnd;
     [Range(0, 1)]
     public float MusicVolume = 0.3f;
     [SerializeField]
@@ -19,6 +20,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     private AudioClip bgClip1;
     [SerializeField]
     private AudioClip bgClip2;
+    [SerializeField]
+    private AudioClip gameoverClip3;
 
     private void Awake()
     {
@@ -28,22 +31,30 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         onGameStart = OnGameStart;
         EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
+        onGameEnd = OnGameEnd;
+        EventService.Instance.GetEvent<GameEndEvent>().Subscribe(onGameEnd);
     }
 
     private void OnDisable()
     {
         EventService.Instance.GetEvent<GameStartEvent>().UnSubscribe(onGameStart);
+        EventService.Instance.GetEvent<GameEndEvent>().UnSubscribe(onGameEnd);
     }
 
     private void OnGameStart()
     {
         //ChangeBackgroundMusic(_backgroundMusic1, _backgroundMusic2);
-        ChangeBackgroundMusic(_backgroundMusic1, bgClip2);
+        ChangeBackgroundMusic(_backgroundMusic1, bgClip2, true);
     }
 
     private void OnReStartGame()
     {
-        ChangeBackgroundMusic(_backgroundMusic1, bgClip1);
+        ChangeBackgroundMusic(_backgroundMusic1, bgClip1, true);
+    }
+
+    private void OnGameEnd()
+    {
+        ChangeBackgroundMusic(_backgroundMusic1, gameoverClip3, false);
     }
 
     //推荐用第二种
@@ -54,10 +65,12 @@ public class AudioManager : PersistentSingleton<AudioManager>
     //    bgCoroutine = StartCoroutine(FadeInOut.FadeSound(oldAudio, newAudio, 2f));
     //}
 
-    private void ChangeBackgroundMusic(AudioSource audioSource, AudioClip newAudio)
+    private void ChangeBackgroundMusic(AudioSource audioSource, AudioClip newAudio,bool isLoop)
     {
         if (bgCoroutine != null)
             StopCoroutine(bgCoroutine);
+       
+        audioSource.loop = isLoop;
         bgCoroutine = StartCoroutine(FadeInOut.FadeSoundByCilp(audioSource, newAudio, 2f));
     }
 }
