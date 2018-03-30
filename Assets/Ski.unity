@@ -1139,7 +1139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &287249326
 Transform:
   m_ObjectHideFlags: 0
@@ -5128,6 +5128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 405326534}
+  - component: {fileID: 405326535}
   - component: {fileID: 405326533}
   m_Layer: 0
   m_Name: InputGUIManager
@@ -5144,9 +5145,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 405326532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed255782f5c66af45ab8c31428340025, type: 3}
+  m_Script: {fileID: 11500000, guid: 18c7acd0e6c078c4b97b037270fd4487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLimit: 0.25
+  button: 0
+  onAtLeastOneClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ClickController+OnAtLeastOneClick, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ClickController+OnSingleClick, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ClickController+OnDoubleClick, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTripleClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 405326535}
+        m_MethodName: DoSome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: ClickController+OnTripleClick, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!4 &405326534
 Transform:
   m_ObjectHideFlags: 0
@@ -5160,6 +5194,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &405326535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 405326532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed255782f5c66af45ab8c31428340025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425981567
 GameObject:
   m_ObjectHideFlags: 0
@@ -8576,7 +8621,7 @@ Prefab:
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -93.6001
+      value: -93.599976
       objectReference: {fileID: 0}
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
@@ -9249,7 +9294,7 @@ Prefab:
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 187.20007
+      value: -187.19998
       objectReference: {fileID: 0}
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
@@ -18238,7 +18283,7 @@ Prefab:
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 93.599976
+      value: 93.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
@@ -19348,6 +19393,7 @@ GameObject:
   - component: {fileID: 1371639376}
   - component: {fileID: 1371639373}
   - component: {fileID: 1371639372}
+  - component: {fileID: 1371639377}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19438,6 +19484,21 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 257
+--- !u!114 &1371639377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371639371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -768656878, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1400645205
 GameObject:
   m_ObjectHideFlags: 0
@@ -19770,7 +19831,7 @@ Prefab:
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 187.20007
+      value: 187.2
       objectReference: {fileID: 0}
     - target: {fileID: 224417911445398750, guid: 15f496045622d5443a1d189de64a4d14,
         type: 2}
@@ -22219,8 +22280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeUIPannel: {fileID: 534543609}
   rankPannel: {fileID: 1664567393}
-  fader: {fileID: 0}
-  pauseMenu: {fileID: 0}
+  fader: {fileID: 1277661426}
+  pauseMenu: {fileID: 491979228}
 --- !u!4 &2006701490
 Transform:
   m_ObjectHideFlags: 0

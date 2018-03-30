@@ -75,6 +75,11 @@ public class GameManager : PersistentSingleton<GameManager>
         EventService.Instance.GetEvent<SlideBornEvent>().Publish();
     }
 
+    public void PlayerResurgenceEvent()
+    {
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Publish();
+    }
+
     public void GameEndEvent()
     {
         EventService.Instance.GetEvent<GameEndEvent>().Publish();
