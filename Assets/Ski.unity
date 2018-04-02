@@ -19926,6 +19926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371639375}
   - component: {fileID: 1371639374}
+  - component: {fileID: 1371639378}
   - component: {fileID: 1371639376}
   - component: {fileID: 1371639373}
   - component: {fileID: 1371639372}
@@ -20035,6 +20036,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &1371639378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371639371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d47c9b5bef9c4347954db2c7431090c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloud01: {fileID: 1413476392}
+  cloud02: {fileID: 1651368907}
+  cloud03: {fileID: 155368071}
 --- !u!1001 &1373603932
 Prefab:
   m_ObjectHideFlags: 0
