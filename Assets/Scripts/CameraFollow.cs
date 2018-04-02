@@ -51,7 +51,7 @@ public class CameraFollow : MonoBehaviour
         }
         if (isEnlargeCamera)
         {
-            bgText.transform.position = GetComponent<Transform>().position + new Vector3(0f, 0f, 20f);
+            bgText.transform.position = GetComponent<Transform>().position + new Vector3(0f, 0f, 40f);
             
             RaycastHit2D hit = Physics2D.Raycast(currentPlayer.transform.position, Vector2.down, 30f, mask);
             if (hit == true)

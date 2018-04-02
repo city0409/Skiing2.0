@@ -50,14 +50,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088669657237902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.79, y: -3.76, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.15336844, w: 0.9881691}
+  m_LocalPosition: {x: 87.33, y: -14.25, z: -5}
   m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
   m_Children:
   - {fileID: 4740070079914108}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -17.644001}
 --- !u!4 &4740070079914108
 Transform:
   m_ObjectHideFlags: 1
@@ -80,7 +80,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -92,11 +92,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088669657237902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc62aa9d4c20be043b3b657513c2b6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fxfeather: {fileID: 0}
 --- !u!212 &212752821877837082
 SpriteRenderer:
   m_ObjectHideFlags: 1

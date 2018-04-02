@@ -8,6 +8,8 @@ public class LevelDirector : Singleton<LevelDirector>
     [SerializeField] private GameObject Ground001;
     [SerializeField] private GameObject Ground002;
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject Fxfeather;
+    private GameObject fxFeatherOBJ;
     private GameObject playerOBJ;
     public GameObject PlayerOBJ { get { return playerOBJ; } private set { playerOBJ = value; } }
     private bool isFollowSkiBoy = false;
@@ -35,6 +37,11 @@ public class LevelDirector : Singleton<LevelDirector>
     {
         Ground001.transform.position = initGround2Pos;
         Ground002.transform.position = initGround2Pos;
+    }
+
+    public void InitFxFeather(Vector3 curPos)
+    {
+        fxFeatherOBJ = Instantiate(Fxfeather, curPos, Quaternion.identity);
     }
 
     public void InitPlayer () 
