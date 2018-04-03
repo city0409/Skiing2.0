@@ -6,22 +6,24 @@ using System;
 
 public class BedBoy : MonoBehaviour 
 {
-    [SerializeField]
-    private Transform posBornStone;
-
-    [SerializeField]
-    private GameObject zzzFx;
-    [SerializeField]
-    private float transRayDown = 1.2f;
-    [SerializeField]
-    private LayerMask layerMaskGround;
+    [SerializeField] private Transform posBornStone;
+    [SerializeField] private GameObject zzzFx;
+    [SerializeField] private float transRayDown = 1.2f;
+    [SerializeField] private LayerMask layerMaskGround;
 
     private Action onBedBoyBorn;
+    private Action onResurgence;
+
     private float speed = 30f;
     private Quaternion relativeRotation;
     private bool isBedBoyGo = false;
     private bool isPlayerStayed = true;
+    private Vector3 init_Transfrom;
 
+    private void Awake()
+    {
+        init_Transfrom = transform.position;
+    }
 
     private void Start()
     {
@@ -32,17 +34,29 @@ public class BedBoy : MonoBehaviour
     {
         onBedBoyBorn = OnBedBoyBorn;
         EventService.Instance.GetEvent<BedBoyBornEvent>().Subscribe(onBedBoyBorn);
+        onResurgence = OnResurgence;
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
     }
+
+    private void OnResurgence()
+    {
+        transform.position = init_Transfrom;
+        gameObject.SetActive(true);
+        isBedBoyGo = false;
+        zzzFx.SetActive(true);
+
+    }
+
     private void Update()
     {
         if (isBedBoyGo)
         {
             MoveBedBoy();
-            Destroy(zzzFx);
+            zzzFx.SetActive(false);
             if (isPlayerStayed && transform.position.x >= posBornStone.position.x )
             {
                 LevelDirector.Instance.IsFollowSkiBoy = true;
-                Destroy(gameObject);
+                gameObject.SetActive(false);
                 LevelDirector.Instance.InitPlayer();
                 GameManager.Instance.OnPlayerSpawnEvent();
                 isPlayerStayed = false;
@@ -75,7 +89,9 @@ public class BedBoy : MonoBehaviour
     private void OnDisable()
     {
         EventService.Instance.GetEvent<BedBoyBornEvent>().UnSubscribe(onBedBoyBorn);
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
+
     }
 
-   
+
 }

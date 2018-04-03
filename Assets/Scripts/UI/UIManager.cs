@@ -33,9 +33,14 @@ public class UIManager : Singleton<UIManager>
         {
             fader.gameObject.SetActive(true);
             if (state)
+            {
                 StartCoroutine(FadeInOut.FadeImage(fader, duration, new Color(0, 0, 0, 1f)));
+            }
             else
+            {
                 StartCoroutine(FadeInOut.FadeImage(fader, duration, new Color(0, 0, 0, 0f)));
+            }
         }
     }
+
 }

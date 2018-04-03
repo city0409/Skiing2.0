@@ -22,8 +22,10 @@ public class LevelDirector : Singleton<LevelDirector>
     public int Score{get { return score; }set{score = value;}}
     private int scoreAward;
     public int ScoreAward { get { return scoreAward; } set { scoreAward = value; } }
-
+    [SerializeField]
     private PlayerData data;
+    public PlayerData Data { get { return data; } set { data = value; } }
+
     [SerializeField]
     private GameObject bedBoyOBJ;
     public GameObject BedBoyOBJ { get { return bedBoyOBJ; } private set { bedBoyOBJ = value; } }
@@ -48,11 +50,11 @@ public class LevelDirector : Singleton<LevelDirector>
 	{
         playerOBJ = Instantiate(playerPrefab, initPlayerPos, Quaternion.identity);
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
-        playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.1f;
+        playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.09f;
         playerOBJ.GetComponent<PlayerMotor>().Cur_velocity = Vector2.zero;
     }
 
-    private void AddHistoryScore()
+    public void AddHistoryScore()
     {
         if (score < 0) return;
         if (data.LeaderboardDatas.Count >= 5)

@@ -14,7 +14,8 @@ public class LeaderboardMenu : MonoBehaviour
 
     private void Awake()
     {
-        data = Resources.Load<PlayerData>("PlayerData");
+        data = LevelDirector.Instance.Data;
+        //data = Resources.Load<PlayerData>("PlayerData");
         foreach (Transform item in LayoutGroupName.transform)
         {
             nameTexts.Add(item.GetComponent<Text>());

@@ -7,6 +7,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
 {
     private Action onGameStart;
     private Action onGameEnd;
+    private Action onResurgence;
+
     [Range(0, 1)]
     public float MusicVolume = 0.3f;
     [SerializeField]
@@ -33,12 +35,20 @@ public class AudioManager : PersistentSingleton<AudioManager>
         EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
         onGameEnd = OnGameEnd;
         EventService.Instance.GetEvent<GameEndEvent>().Subscribe(onGameEnd);
+        onResurgence = OnResurgence;
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
+    }
+
+    private void OnResurgence()
+    {
+        OnReStartGame();
     }
 
     private void OnDisable()
     {
         EventService.Instance.GetEvent<GameStartEvent>().UnSubscribe(onGameStart);
         EventService.Instance.GetEvent<GameEndEvent>().UnSubscribe(onGameEnd);
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
     }
 
     private void OnGameStart()

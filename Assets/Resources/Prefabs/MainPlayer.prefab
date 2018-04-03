@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1492730232641742
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,10 +465,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Time: 0.1
+  m_Time: 0.05
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.5
+    widthMultiplier: 0.35
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -615,9 +615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5d2c6a60f9f804bb3ac2004c5ce368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visual1: {fileID: 1399566487217570}
+  visualSki: {fileID: 1399566487217570}
   visual2: {fileID: 1492730232641742}
-  visual3: {fileID: 1709938680460564}
+  visualLie: {fileID: 1709938680460564}
+  visualRoll: {fileID: 1516242468075122}
+  visualJump: {fileID: 1492947344171356}
   jumpForce: 150
   moveForce: 30
   gravity: 5

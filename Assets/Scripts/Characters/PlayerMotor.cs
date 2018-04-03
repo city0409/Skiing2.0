@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerMotor : Singleton<PlayerMotor>
 {
-    [SerializeField] private GameObject visual1;
+    private GameObject visualCurrent;
+    [SerializeField] private GameObject visualSki;
     [SerializeField] private GameObject visual2;
-    [SerializeField] private GameObject visual3;
-    public GameObject Visual1 { get { return visual1; } set { visual1 = value; } }
-    public GameObject Visual2 { get { return visual1; } set { visual1 = value; } }
-    public GameObject Visual3 { get { return visual1; } set { visual1 = value; } }
+    [SerializeField] private GameObject visualLie;
+    [SerializeField] private GameObject visualRoll;
+    [SerializeField] private GameObject visualJump;
+    public GameObject VisualSki { get { return visualSki; } set { visualSki = value; } }
+    public GameObject Visual2 { get { return visual2; } set { visual2 = value; } }
+    public GameObject VisualLie { get { return visualLie; } set { visualLie = value; } }
+    public GameObject VisualRoll { get { return visualRoll; } set { visualRoll = value; } }
+    public GameObject VisualJump { get { return visualJump; } set { visualJump = value; } }
 
     //[SerializeField]
     private float speed;
@@ -34,8 +39,9 @@ public class PlayerMotor : Singleton<PlayerMotor>
 
     private Quaternion initRotation;
 
-    private void Awake()
+    protected override void Awake()
     {
+        visualCurrent = visualSki;
         rig = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -129,9 +135,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
         {
             reset = false;
             cur_velocity = rig.velocity;
-            visual1.SetActive(false);
-            visual2.SetActive(false);
-            visual3.SetActive(true);
+            visualCurrent= visualLie;
 
         }
         

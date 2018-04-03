@@ -19,11 +19,6 @@ public class GameManager : PersistentSingleton<GameManager>
         Application.targetFrameRate = GameFrameRate;
     }
 
-    public void PauseGame()
-    {
-        TimeScale = 0f;
-    }
-
     public void Reset()
     {
         TimeScale = 1f;
@@ -77,6 +72,8 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public void PlayerResurgenceEvent()
     {
+        TimeScale = 1f;
+
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().Publish();
     }
 
@@ -102,17 +99,13 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public void PlayerDeadEvent()
     {
+        TimeScale = 0f;
         EventService.Instance.GetEvent<PlayerDeadEvent>().Publish();
     }
 
     public void ResourceInitedEvent()
     {
         EventService.Instance.GetEvent<ResourceInitedEvent>().Publish();
-    }
-
-    public void ReStartEvent()
-    {
-        EventService.Instance.GetEvent<ReStartEvent>().Publish();
     }
 
     public void UnPausedEvent()

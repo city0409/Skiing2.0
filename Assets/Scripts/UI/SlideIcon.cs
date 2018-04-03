@@ -7,18 +7,23 @@ using System;
 public class SlideIcon : MonoBehaviour 
 {
     private Action onSlideCome;
-    private RectTransform rectTransfrom;
+    private Action onResurgence;
     
+    private RectTransform rectTransfrom;
+    private Vector3 init_rectTransfrom;
+
+    private void Awake()
+    {
+        rectTransfrom = GetComponent<RectTransform>();
+        init_rectTransfrom = rectTransfrom.position;
+    }
 
     private void OnEnable()
     {
         onSlideCome = OnSlideCome;
         EventService.Instance.GetEvent<BeAboutToDieEvent>().Subscribe(onSlideCome);
-    }
-
-    private void Awake()
-    {
-        rectTransfrom = GetComponent<RectTransform>();
+        onResurgence = OnResurgence;
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
     }
 
     IEnumerator SlideIconAccess()
@@ -37,8 +42,14 @@ public class SlideIcon : MonoBehaviour
         StartCoroutine(SlideIconAccess());
     }
 
+    private void OnResurgence()
+    {
+        rectTransfrom.position = init_rectTransfrom;
+    }
+
     private void OnDisable()
     {
         EventService.Instance.GetEvent<BeAboutToDieEvent>().UnSubscribe(onSlideCome);
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
     }
 }

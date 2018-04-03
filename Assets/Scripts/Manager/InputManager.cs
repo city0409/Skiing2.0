@@ -13,7 +13,11 @@ public class InputManager : Singleton<InputManager>
 
     private void Update()
     {
-
+        //if (Input .GetKeyDown(KeyCode.D))
+        //{
+        //    Resurgence();
+        //    print("11112334556");
+        //}
     }
 
     public void Resurgence()

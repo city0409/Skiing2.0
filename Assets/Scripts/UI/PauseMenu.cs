@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
+    private HomeUIPannel homeUIPannel;
+    [SerializeField]
     private AudioMixerSnapshot paused, unpaused;
 
     [SerializeField]
@@ -22,11 +24,6 @@ public class PauseMenu : MonoBehaviour
     {
         canvasGroupList.Add(pauseGroup);
         DisplayMenu();
-    }
-
-    private void Update()
-    {
-
     }
 
     public void PauseGame()
@@ -45,17 +42,16 @@ public class PauseMenu : MonoBehaviour
     {
         GameManager.Instance.Reset();
         DisplayMenu();
-        //UIManager.Instance.FaderOn(true, 0.1f);
-        //LevelDirector.Instance.PlayerController.GetComponentInChildren<TrailRenderer>().isVisible = false;
-
-        //LevelDirector.Instance.InitPlayer();
+        homeUIPannel.RestartGame();
     }
+ 
+
     public void BackHome()
     {
         GameManager.Instance.Reset();
         DisplayMenu();
-        UIManager.Instance.FaderOn(true, 1f);
-        LoadSceneManager.LoadScene(1);
+        //UIManager.Instance.FaderOn(true, 0.5f);
+        GameManager.Instance.PlayerResurgenceEvent();
     }
 
     public void Lowpass()

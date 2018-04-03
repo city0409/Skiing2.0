@@ -7,6 +7,9 @@ public class CameraFollow : MonoBehaviour
 {
     private Camera camera;
     private Action onGameStart;
+    private Action onResurgence;
+    private Vector3 init_Transfrom;
+
     private bool isEnlargeCamera = false;
 
     [SerializeField] private GameObject bedBoy;
@@ -23,12 +26,27 @@ public class CameraFollow : MonoBehaviour
 	{
         camera = GetComponent<Camera>();
         currentPlayer = bedBoy;
+        init_Transfrom = new Vector3(0f,1f,-10f);
+        //init_Transfrom = camera.GetComponent<Transform>().position;
     }
 
     private void OnEnable()
     {
         onGameStart = OnGameStart;
         EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
+        onResurgence = OnResurgence;
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
+    }
+
+    private void OnResurgence()
+    {
+        camera.GetComponent<Transform>().position = new Vector3(0f,1f,-10f);
+        camera.orthographicSize = 10f;
+        currentPlayer = bedBoy;
+        isEnlargeCamera = false;
+        LevelDirector.Instance.IsFollowSkiBoy = false;
+        tempPos = Vector3.zero;
+        change = Vector3.zero;
     }
 
     private void Update()
@@ -67,6 +85,7 @@ public class CameraFollow : MonoBehaviour
     private void OnDisable()
     {
         EventService.Instance.GetEvent<GameStartEvent>().UnSubscribe(onGameStart);
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
     }
 
     private void OnGameStart()
