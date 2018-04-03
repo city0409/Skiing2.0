@@ -17,7 +17,7 @@ public class Stone : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             LevelDirector.Instance.InitFxFeather(transform.position);
-            Destroy(gameObject, 0.05f);
+            Destroy(gameObject);
         }
     }
 }

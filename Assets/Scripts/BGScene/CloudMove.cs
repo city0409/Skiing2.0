@@ -6,40 +6,46 @@ using DG.Tweening;
 public class CloudMove : MonoBehaviour 
 {
     [SerializeField]
-    private Transform cloud01;
+    private Transform cloudRight;
     [SerializeField]
-    private Transform cloud02;
-    [SerializeField]
-    private Transform cloud03;
+    private Transform cloudLeft;
 
     private float cameraWidth;
-    private float initCloudPos;
-    private float initCloud01;
+    private float poleR;
+    private float initCloudR;
+    private float initCloudL;
 
+    private Tweener t_cloudRight;
+    private Tweener t_cloudLeft;
 
     private void Awake() 
 	{
-        initCloud01 = cloud01.transform.position.x;
+        initCloudR = cloudRight.transform.position.x + 17f;
+        initCloudL = cloudLeft.transform.position.x - 14f;
         cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        initCloudPos = transform.position.x - cameraWidth;
-        MoveCloud(cloud01, initCloudPos - cameraWidth , 30f);
+        poleR = transform.position.x - cameraWidth*5 ;
+        t_cloudRight = MoveCloud(cloudRight, poleR, 240f);
+        t_cloudLeft = MoveCloud(cloudLeft, poleR, 160f);
     }
 
     private void Update () 
 	{
-        if (cloud01.position.x < initCloudPos)
+        if (cloudRight.position.x < poleR + cameraWidth)
         {
-            print("okl");
-            cloud01.position = new Vector3(initCloud01, cloud01.position.y, cloud01.position.z);
-            //cloud01.position = new Vector3(cloud01.position.x + 4* cameraWidth, cloud01.position.y, cloud01.position.z);
-            //cloud01.position += new Vector3(cloud01.position.x + 4* cameraWidth, 0f, 0f);
-            MoveCloud(cloud01, initCloudPos - cameraWidth , 30f);
+            t_cloudRight.Kill();
+            cloudRight.position = new Vector3(initCloudR , cloudRight.position.y, cloudRight.position.z);
+            t_cloudRight = MoveCloud(cloudRight, poleR , 240f);
+        }
+        if (cloudLeft.position.x < poleR + cameraWidth )
+        {
+            t_cloudLeft.Kill();
+            cloudLeft.position = new Vector3(initCloudR, cloudLeft.position.y, cloudLeft.position.z);
+            t_cloudLeft = MoveCloud(cloudLeft, poleR, 240f);
         }
     }
 
-    private void MoveCloud(Transform cloud,float endValue,float duration)
+    private Tweener MoveCloud(Transform cloud,float endValue,float duration)
     {
-        cloud.DOLocalMoveX(endValue, duration);
-
+        return cloud.DOLocalMoveX(endValue, duration);
     }
 }
