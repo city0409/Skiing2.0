@@ -12,9 +12,9 @@ public class PlayerController : Singleton<PlayerController>
     private PlayerState myState;
     public PlayerState MyState { get { return myState; } set { myState = value; } }
 
-    [SerializeField] private GameObject visual1;
-    [SerializeField] private GameObject visual2;
-    [SerializeField] private GameObject visual3;
+    //[SerializeField] private GameObject visual1;
+    //[SerializeField] private GameObject visual2;
+    //[SerializeField] private GameObject visual3;
     private BoxCollider2D playColl;
     public BoxCollider2D PlayColl { get { return playColl; } set { playColl = value; } }
 
@@ -129,8 +129,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             //雪人处理代码
             Debug.Log("snow man");
-            visual1.SetActive(false);
-            visual2.SetActive(true);
+            //visual2
             myState.IsRideSnowMan = true;
         }
 

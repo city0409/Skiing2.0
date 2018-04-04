@@ -27,15 +27,14 @@ public class CameraFollow : MonoBehaviour
         camera = GetComponent<Camera>();
         currentPlayer = bedBoy;
         init_Transfrom = new Vector3(0f,1f,-10f);
-        //init_Transfrom = camera.GetComponent<Transform>().position;
     }
 
     private void OnEnable()
     {
-        onGameStart = OnGameStart;
-        EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
         onResurgence = OnResurgence;
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
+        onGameStart = OnGameStart;
+        EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
     }
 
     private void OnResurgence()

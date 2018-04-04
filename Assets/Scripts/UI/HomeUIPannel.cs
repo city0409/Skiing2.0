@@ -96,6 +96,11 @@ public class HomeUIPannel : MonoBehaviour
         GameManager.Instance.PlayerResurgenceEvent();
         UIManager.Instance.FaderOn(false, 1f);
         UIManager.Instance.IsRank = false;
+        //StartCoroutine(Delay());
         StartGame();
     }
+    //private IEnumerator Delay()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //}
 }

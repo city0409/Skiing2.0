@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : Singleton<InputManager>
 {
+    
     //public bool my_left_btn_clicked;
 
     //protected override void Awake()
@@ -13,11 +14,7 @@ public class InputManager : Singleton<InputManager>
 
     private void Update()
     {
-        //if (Input .GetKeyDown(KeyCode.D))
-        //{
-        //    Resurgence();
-        //    print("11112334556");
-        //}
+        
     }
 
     public void Resurgence()

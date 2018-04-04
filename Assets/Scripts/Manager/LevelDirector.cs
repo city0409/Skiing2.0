@@ -18,6 +18,7 @@ public class LevelDirector : Singleton<LevelDirector>
     [SerializeField] private Vector3 initPlayerPos;
     [SerializeField] private Vector3 initGround2Pos;
 
+
     private int score;
     public int Score{get { return score; }set{score = value;}}
     private int scoreAward;
@@ -34,7 +35,9 @@ public class LevelDirector : Singleton<LevelDirector>
 	{
         InitBG();
     }
-	
+
+    
+
     public void InitBG()
     {
         Ground001.transform.position = initGround2Pos;

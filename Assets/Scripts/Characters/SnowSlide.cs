@@ -12,6 +12,7 @@ public class SnowSlide : MonoBehaviour
     [SerializeField] private float transRayDown = 1.2f;
     [SerializeField] private LayerMask layerMaskGround;
 
+    private Action onGameStart;
     private Action onSlideBorn;
     private Action onResurgence;
     private Vector3 init_Transfrom;
@@ -36,11 +37,20 @@ public class SnowSlide : MonoBehaviour
         EventService.Instance.GetEvent<SlideBornEvent>().Subscribe(onSlideBorn);
         onResurgence = OnResurgence;
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
+        onGameStart = OnGameStart;
+        EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
     }
 
     private void OnResurgence()
     {
         transform.position = init_Transfrom;
+        
+    }
+
+    private void OnGameStart()
+    {
+        isSlideGo = true;
+        StartCoroutine(threaten());
     }
 
     private void Update()
@@ -58,6 +68,7 @@ public class SnowSlide : MonoBehaviour
 
     private void OnDisable()
     {
+        EventService.Instance.GetEvent<GameStartEvent>().UnSubscribe(onGameStart);
         EventService.Instance.GetEvent<SlideBornEvent>().UnSubscribe(onSlideBorn);
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
     }

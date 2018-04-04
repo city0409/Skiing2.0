@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerMotor : Singleton<PlayerMotor>
 {
-    private GameObject visualCurrent;
-    [SerializeField] private GameObject visualSki;
-    [SerializeField] private GameObject visual2;
-    [SerializeField] private GameObject visualLie;
-    [SerializeField] private GameObject visualRoll;
-    [SerializeField] private GameObject visualJump;
-    public GameObject VisualSki { get { return visualSki; } set { visualSki = value; } }
-    public GameObject Visual2 { get { return visual2; } set { visual2 = value; } }
-    public GameObject VisualLie { get { return visualLie; } set { visualLie = value; } }
-    public GameObject VisualRoll { get { return visualRoll; } set { visualRoll = value; } }
-    public GameObject VisualJump { get { return visualJump; } set { visualJump = value; } }
+    private Animator anim;
+    //[SerializeField] private GameObject visualSki;
+    //[SerializeField] private GameObject visual2;
+    //[SerializeField] private GameObject visualLie;
+    //[SerializeField] private GameObject visualRoll;
+    //[SerializeField] private GameObject visualJump;
+    //public GameObject VisualSki { get { return visualSki; } set { visualSki = value; } }
+    //public GameObject Visual2 { get { return visual2; } set { visual2 = value; } }
+    //public GameObject VisualLie { get { return visualLie; } set { visualLie = value; } }
+    //public GameObject VisualRoll { get { return visualRoll; } set { visualRoll = value; } }
+    //public GameObject VisualJump { get { return visualJump; } set { visualJump = value; } }
 
     //[SerializeField]
     private float speed;
@@ -41,7 +41,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
 
     protected override void Awake()
     {
-        visualCurrent = visualSki;
+        anim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -135,7 +135,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
         {
             reset = false;
             cur_velocity = rig.velocity;
-            visualCurrent= visualLie;
+            // visualLie;
 
         }
         
