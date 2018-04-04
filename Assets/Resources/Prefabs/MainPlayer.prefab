@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114607634751773776}
   - component: {fileID: 114744809635870222}
   - component: {fileID: 114720209169967172}
+  - component: {fileID: 114899937994684028}
   - component: {fileID: 50644869547292800}
   m_Layer: 12
   m_Name: MainPlayer
@@ -515,6 +516,17 @@ MonoBehaviour:
   layerMaskSnow:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &114899937994684028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282245662464454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d91c30333dd0242b8cf85e6f28816f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212049795391619638
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,8 +14,12 @@ public class LevelDirector : Singleton<LevelDirector>
     public GameObject PlayerOBJ { get { return playerOBJ; } private set { playerOBJ = value; } }
     private bool isFollowSkiBoy = false;
     public bool IsFollowSkiBoy { get { return isFollowSkiBoy; } set { isFollowSkiBoy = value; } }
+    private Action onResurgence;
 
     [SerializeField] private Vector3 initPlayerPos;
+    [SerializeField] private Vector3 initSlidePos;
+    public Vector3 InitSlidePos { get { return initSlidePos; } set { initSlidePos = value; } }
+
     [SerializeField] private Vector3 initGround2Pos;
 
 
@@ -30,13 +34,30 @@ public class LevelDirector : Singleton<LevelDirector>
     [SerializeField]
     private GameObject bedBoyOBJ;
     public GameObject BedBoyOBJ { get { return bedBoyOBJ; } private set { bedBoyOBJ = value; } }
+    [SerializeField]
+    private GameObject slideOBJ;
+    public GameObject SlideOBJ { get { return slideOBJ; } private set { slideOBJ = value; } }
 
     private void Start () 
 	{
         InitBG();
+
     }
 
-    
+    private void OnEnable()
+    {
+        onResurgence = OnResurgence;
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
+    }
+    private void OnResurgence()
+    {
+        Destroy(playerOBJ);
+    }
+
+    private void OnDisable()
+    {
+        EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
+    }
 
     public void InitBG()
     {
@@ -55,6 +76,11 @@ public class LevelDirector : Singleton<LevelDirector>
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
         playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.09f;
         playerOBJ.GetComponent<PlayerMotor>().Cur_velocity = Vector2.zero;
+    }
+
+    public void InitSlide()
+    {
+
     }
 
     public void AddHistoryScore()

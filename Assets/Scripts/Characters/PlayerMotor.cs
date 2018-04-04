@@ -26,18 +26,18 @@ public class PlayerMotor : Singleton<PlayerMotor>
     private bool reset = true;
     public bool Reset { get { return reset; } set { reset = value; } }
 
-    private Quaternion initRotation;
+    private DeadlineSlide deadlineSlide;
 
     protected override void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rig = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
+        deadlineSlide = GetComponent<DeadlineSlide>();
     }
 
     private void Start()
     {
-        initRotation = transform.rotation;
         rolling_speed = 360 / rolling_min_time;
     }
 
@@ -121,6 +121,10 @@ public class PlayerMotor : Singleton<PlayerMotor>
         {
             reset = false;
             cur_velocity = rig.velocity;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, layerMaskGround);
+            transform.localRotation = Quaternion.FromToRotation(transform.up, hit.normal);
+            rig.angularVelocity = 0f;
+            deadlineSlide.startDeadline = true;
         }
         
         cur_velocity.Scale(new Vector2(0.1f, 0.9f));
@@ -135,6 +139,6 @@ public class PlayerMotor : Singleton<PlayerMotor>
             //Debug.Log("Lie" + cur_velocity);
         }
         rig.velocity = cur_velocity;
-        transform.rotation = initRotation;
+
     }
 }

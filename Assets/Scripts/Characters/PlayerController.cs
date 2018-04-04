@@ -107,6 +107,8 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+
+
     private void GoYou()
     {
         //playColl.offset = new Vector2(0f, 0.34f);
