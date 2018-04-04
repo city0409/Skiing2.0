@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
+[Serializable]
 public class PlayerState
 {
-    public bool IsSkiing { get; set; }
 
-    //public bool IsJump { get; set; }
+    private bool isSkinng;
+    private bool isRollling;
+    private bool isOnGround;
+    private bool isRideSnowMan;
+    private bool isLie;
+    
+    public bool IsSkiing { get { return isSkinng; } set { isSkinng = value; } }
 
-    public bool IsRollling { get; set; }
+    public bool IsRollling { get { return isRollling; } set { isRollling = value; } }
 
-    public bool IsOnGround{ get; set; }
+    public bool IsOnGround { get { return isOnGround; } set { isOnGround = value; } }
 
-    public bool IsRideSnowMan { get; set; }
+    public bool IsRideSnowMan { get { return isRideSnowMan; } set { isRideSnowMan = value; } }
 
-    public bool IsLie { get; set; }
+    public bool IsLie { get { return isLie; } set { isLie = value; } }
 }

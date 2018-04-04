@@ -5,17 +5,6 @@ using UnityEngine;
 public class PlayerMotor : Singleton<PlayerMotor>
 {
     private Animator anim;
-    //[SerializeField] private GameObject visualSki;
-    //[SerializeField] private GameObject visual2;
-    //[SerializeField] private GameObject visualLie;
-    //[SerializeField] private GameObject visualRoll;
-    //[SerializeField] private GameObject visualJump;
-    //public GameObject VisualSki { get { return visualSki; } set { visualSki = value; } }
-    //public GameObject Visual2 { get { return visual2; } set { visual2 = value; } }
-    //public GameObject VisualLie { get { return visualLie; } set { visualLie = value; } }
-    //public GameObject VisualRoll { get { return visualRoll; } set { visualRoll = value; } }
-    //public GameObject VisualJump { get { return visualJump; } set { visualJump = value; } }
-
     //[SerializeField]
     private float speed;
     //public float Speed { get { return speed; } set { speed = value; } }
@@ -41,7 +30,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
 
     protected override void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         rig = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -60,7 +49,6 @@ public class PlayerMotor : Singleton<PlayerMotor>
         }
         if (controller.MyState.IsOnGround && m_left_btn_clicked)
         {
-            //rig.AddForce(new Vector2(jumpForce * ground_normal.x , jumpForce * ground_normal.y), ForceMode2D.Impulse);
             rig.AddForce(new Vector2(jumpForce * ground_normal.x + jumpForce * ground_normal.y, 0.6f* jumpForce * ground_normal.y), ForceMode2D.Impulse);
         }
         else if (m_left_btn_clicked && !controller.MyState.IsOnGround && !controller.MyState.IsRollling)
@@ -90,8 +78,6 @@ public class PlayerMotor : Singleton<PlayerMotor>
         Debug.Log("Roll");
         controller.MyState.IsRollling = true;
         cur_rolling_time = 0f;
-        //rig.AddTorque(60);
-        //controller.MyState.IsRoll = false;
     }
 
     private void Rolling()
@@ -135,8 +121,6 @@ public class PlayerMotor : Singleton<PlayerMotor>
         {
             reset = false;
             cur_velocity = rig.velocity;
-            // visualLie;
-
         }
         
         cur_velocity.Scale(new Vector2(0.1f, 0.9f));
@@ -144,7 +128,6 @@ public class PlayerMotor : Singleton<PlayerMotor>
         if (cur_velocity.magnitude < 0.1f)
         {
             cur_velocity = Vector2.zero;
-            //Debug.Log("Lie" + rig.velocity);
             rig.bodyType = RigidbodyType2D.Static;
         }
         else

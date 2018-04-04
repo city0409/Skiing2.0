@@ -66,6 +66,7 @@ public class BedBoy : MonoBehaviour
     private void OnBedBoyBorn()
     {
         isBedBoyGo = true;
+        isPlayerStayed = true;
     }
 
     public void MoveBedBoy()

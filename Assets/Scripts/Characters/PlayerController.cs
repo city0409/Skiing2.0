@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    private Animator anim;
+
     private const string pauseName = "pause";
     private const string continueName = "continue";
     private const string restartName = "restart";
@@ -12,9 +14,6 @@ public class PlayerController : Singleton<PlayerController>
     private PlayerState myState;
     public PlayerState MyState { get { return myState; } set { myState = value; } }
 
-    //[SerializeField] private GameObject visual1;
-    //[SerializeField] private GameObject visual2;
-    //[SerializeField] private GameObject visual3;
     private BoxCollider2D playColl;
     public BoxCollider2D PlayColl { get { return playColl; } set { playColl = value; } }
 
@@ -36,6 +35,7 @@ public class PlayerController : Singleton<PlayerController>
         myState = new PlayerState();
 
         playerMotor = GetComponent<PlayerMotor>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -55,10 +55,44 @@ public class PlayerController : Singleton<PlayerController>
             m_left_btn_clicked = Input.GetMouseButtonDown(0);
         }
 
-        if (myState.IsRideSnowMan)
+        //if (myState.IsRideSnowMan)
+        //{
+        //    GoYou();
+        //}
+        
+        if(myState.IsLie)
         {
-            GoYou();
+            //anim.SetTrigger("lie");
+            anim.SetBool("ski", false);
+            anim.SetBool("lie", true);
+            anim.SetBool("roll", false);
+            anim.SetBool("jump", false);
         }
+        else if (myState.IsRollling)
+        {
+            //anim.SetTrigger("roll");
+            anim.SetBool("ski", false);
+            anim.SetBool("lie", false);
+            anim.SetBool("roll", true);
+            anim.SetBool("jump", false);
+        }
+        else if (!myState.IsOnGround)
+        {
+            //anim.SetTrigger("jump");
+            anim.SetBool("ski", false);
+            anim.SetBool("lie", false);
+            anim.SetBool("roll", false);
+            anim.SetBool("jump", true);
+        }
+        else if (myState.IsSkiing)
+        {
+            //anim.SetTrigger("ski");
+            anim.SetBool("ski", true);
+            anim.SetBool("lie", false);
+            anim.SetBool("roll", false);
+            anim.SetBool("jump", false);
+        }
+
     }
 
     private void FixedUpdate()
@@ -170,13 +204,11 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (is_lie)
             {
-                //myState.IsJump = false;
                 myState.IsLie = true;
             }
             else
             {
                 myState.IsSkiing = true;
-                //myState.IsJump = false;
             }
         }
 
