@@ -21,7 +21,8 @@ public class DeadlineSlide : MonoBehaviour
             {
                 startDeadline = false;
                 print("nice func once.");
-                LevelDirector.Instance.InitSlide();
+                transform.GetComponent<AroundInitOBJ>().InitSlide();
+                GameManager.Instance.BeAboutToDieEvent();
                 timer = 4f;
             }
         }

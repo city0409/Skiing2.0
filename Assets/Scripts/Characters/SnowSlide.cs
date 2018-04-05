@@ -11,10 +11,13 @@ public class SnowSlide : MonoBehaviour
     private const string restartName = "restart";
     [SerializeField] private float transRayDown = 1.2f;
     [SerializeField] private LayerMask layerMaskGround;
+    [SerializeField]
+    private LayerMask layerMaskPlayer;
 
     private Action onGameStart;
     private Action onSlideBorn;
     private Action onResurgence;
+    private Action onBeAboutToDie;
     private Vector3 init_Transfrom;
 
     private float speed = 40f;
@@ -39,6 +42,9 @@ public class SnowSlide : MonoBehaviour
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().Subscribe(onResurgence);
         onGameStart = OnGameStart;
         EventService.Instance.GetEvent<GameStartEvent>().Subscribe(onGameStart);
+        onBeAboutToDie = OnBeAboutToDie;
+        EventService.Instance.GetEvent<BeAboutToDieEvent>().Subscribe(onBeAboutToDie);
+
     }
 
     private void OnResurgence()
@@ -51,6 +57,19 @@ public class SnowSlide : MonoBehaviour
     {
         isSlideGo = true;
         StartCoroutine(threaten());
+    }
+    private void OnBeAboutToDie()
+    {
+        isSlideGo = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (transform != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + new Vector3(25f, 0,0));
+        }
     }
 
     private void Update()
@@ -71,6 +90,7 @@ public class SnowSlide : MonoBehaviour
         EventService.Instance.GetEvent<GameStartEvent>().UnSubscribe(onGameStart);
         EventService.Instance.GetEvent<SlideBornEvent>().UnSubscribe(onSlideBorn);
         EventService.Instance.GetEvent<PlayerResurgenceEvent>().UnSubscribe(onResurgence);
+        EventService.Instance.GetEvent<BeAboutToDieEvent>().UnSubscribe(onResurgence);
     }
 
     private void OnSlideBorn()
@@ -84,6 +104,8 @@ public class SnowSlide : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isSlideGo = false;
         GameManager.Instance.BedBoyBornEvent();
+        yield return new WaitForSeconds(5f);
+        gameObject.SetActive(false);
     }
 
     public void MoveSlide()
@@ -109,13 +131,15 @@ public class SnowSlide : MonoBehaviour
             }
         //}
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag == "Player")
         {
+            isSlideGo = false;
             LevelDirector.Instance.PlayerOBJ.GetComponent<PlayerController>().MyState.IsLie = true;
             GameManager.Instance.PlayerDeadEvent();
         }
     }
+   
 }
