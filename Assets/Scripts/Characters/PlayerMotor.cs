@@ -16,7 +16,8 @@ public class PlayerMotor : Singleton<PlayerMotor>
     private float cur_rolling_time = 0f;
     private float rolling_speed;
 
-    public Rigidbody2D rig;
+    private Rigidbody2D rig;
+    public Rigidbody2D Rig { get { return rig; } set { rig = value; } }
     private PlayerController controller;
     private Vector2 cur_velocity;
 
@@ -133,12 +134,12 @@ public class PlayerMotor : Singleton<PlayerMotor>
         {
             print("nonononon");
             cur_velocity = Vector2.zero;
-            //if (isStatic)
-            //{
-            //    isStatic = false;
-            //    rig.bodyType = RigidbodyType2D.Static;
+            if (isStatic)
+            {
+                isStatic = false;
+                rig.bodyType = RigidbodyType2D.Static;
 
-            //}
+            }
         }
         rig.velocity = cur_velocity;
 

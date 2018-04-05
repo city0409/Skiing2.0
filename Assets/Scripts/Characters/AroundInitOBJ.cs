@@ -9,6 +9,7 @@ public class AroundInitOBJ : MonoBehaviour
     private Action onBedBoyBorn;
     private Action onPlayerSpawn;
     private float initTreePos;
+    private float initCoinPos;
     private float initHousePos;
     private float initStonePos;
     private float initSlidePos;
@@ -42,12 +43,13 @@ public class AroundInitOBJ : MonoBehaviour
 	{
         if (player == null)  return; 
         timer += Time.deltaTime;
-        if (timer > 2)
+        if (timer > 2 && !LevelDirector.Instance.PlayerOBJ.GetComponent<PlayerController>().MyState.IsLie)
         {
             timer = 0;
             InitTrees();
             //InitHouses();
             InitStones();
+            InitCoins();
         }
         
     }
@@ -63,6 +65,24 @@ public class AroundInitOBJ : MonoBehaviour
             obj1.transform.position = v;
             obj1.transform.localRotation = Quaternion.FromToRotation(obj1.transform.up, hit.normal);
         }
+    }
+
+    public void InitCoins()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            initCoinPos = player.transform.position.x + cameraWidth * 2.3f + i;
+            pos = new Vector2(initCoinPos, player.transform.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(pos, -Vector2.up, 1000f, layerMaskGround);
+            if (hit.collider != null)
+            {
+                Vector3 v = hit.point;
+                GameObject obj1 = CoinPool.Instance.InitCoin();
+                obj1.transform.position = v + new Vector3(0f, 0.8f, 0f);
+                obj1.transform.localRotation = Quaternion.FromToRotation(obj1.transform.up, hit.normal);
+            }
+        }
+        
     }
 
     public void InitSlide()

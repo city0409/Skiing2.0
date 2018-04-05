@@ -84,6 +84,8 @@ public class LevelDirector : Singleton<LevelDirector>
         //Vector3 pos = playerOBJ.transform.position;
         //Destroy(playerOBJ);
         //Instantiate(playerPrefab, pos, Quaternion.identity);
+        playerOBJ.GetComponent<PlayerMotor>().Rig.bodyType = RigidbodyType2D.Dynamic;
+
     }
 
     public void AddHistoryScore()
