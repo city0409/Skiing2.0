@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PlayerController : Singleton<PlayerController>
 {
     private Animator anim;
-
+    private TrailRenderer Scarf;
     private const string pauseName = "pause";
     private const string continueName = "continue";
     private const string restartName = "restart";
@@ -36,11 +36,13 @@ public class PlayerController : Singleton<PlayerController>
 
         playerMotor = GetComponent<PlayerMotor>();
         anim = GetComponentInChildren<Animator>();
+        Scarf = GetComponentInChildren<TrailRenderer>();
     }
 
     private void Start()
     {
         myState.IsSkiing = true;
+        Scarf.time = 0.09f;
     }
 
     private void Update()
@@ -103,6 +105,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (myState.IsLie)
         {
+            playerMotor.IsStatic = true;
             playerMotor.Lie();
         }
     }
@@ -142,18 +145,9 @@ public class PlayerController : Singleton<PlayerController>
         int hit_stone_num = playColl.OverlapCollider(filter_stone, colliders);
         if (hit_stone_num > 0)
         {
-            //LayerMask mask = colliders[0].GetComponent<Transform>().gameObject.layer;
-            //Debug.Log("die " + LayerMask.LayerToName(mask.value));
-            Debug.Log("stone!!!!!!");
             myState.IsLie = true;
             return;
         }
-        //RaycastHit2D ray_hit0 = Physics2D.Raycast(transform.position, transform.right, 0.6f, layerMaskOther);
-        //if (ray_hit0)
-        //{
-        //    myState.IsLie = true;
-        //    return;
-        //}
 
         ContactFilter2D filter_snowman = new ContactFilter2D();
         filter_snowman.layerMask = layerMaskSnowman;
@@ -163,8 +157,6 @@ public class PlayerController : Singleton<PlayerController>
         if (hit_snowman_num > 0)
         {
             //雪人处理代码
-            Debug.Log("snow man");
-            //visual2
             myState.IsRideSnowMan = true;
         }
 
@@ -212,59 +204,6 @@ public class PlayerController : Singleton<PlayerController>
                 myState.IsSkiing = true;
             }
         }
-
-
-        //Vector2 col_offset = playColl.offset;
-        //Vector2 col_size = playColl.size;
-        //float expand = 1.2f;
-        //Vector3 left_bottom = new Vector3(-col_size.x * 0.5f * expand + col_offset.x, -col_size.y * 0.5f * expand + col_offset.y, 0.0f);
-        //Vector3 right_bottom = new Vector3(col_size.x * 0.5f * expand + col_offset.x, -col_size.y * 0.5f * expand + col_offset.y, 0.0f);
-        //Vector3 left_top = new Vector3(-col_size.x * 0.5f * expand + col_offset.x, col_size.y * 0.5f * expand + col_offset.y, 0.0f);
-        //Vector3 right_top = new Vector3(col_size.x * 0.5f * expand + col_offset.x, col_size.y * 0.5f * expand + col_offset.y, 0.0f);
-
-        //Vector3[] points = new Vector3[4];
-        //points[0] = transform.TransformPoint(left_bottom);
-        //points[1] = transform.TransformPoint(right_bottom);
-        //points[2] = transform.TransformPoint(right_top);
-        //points[3] = transform.TransformPoint(left_top);
-
-        //Vector3[] lines = new Vector3[4];
-        //lines[0] = points[1] - points[0];
-        //lines[1] = points[2] - points[1];
-        //lines[2] = points[3] - points[2];
-        //lines[3] = points[0] - points[3];
-
-        //bool is_hit = false;
-        //bool is_lie = false;
-
-        //for (int i = 0; i < 1; i++)
-        //{
-        //    Vector3 dir = lines[i];
-        //    dir.Normalize();
-        //    Vector3 start = points[i];
-        //    Vector3 end = points[(i + 1) % 4];
-        //    RaycastHit2D ray_hit = Physics2D.Raycast(start, dir, lines[i].magnitude, layerMask);
-        //    Vector3 normal = ray_hit.normal;
-        //    Vector3 up = transform.up;
-
-        //    float up_dot_normal = Vector3.Dot(normal, up);
-        //    float thresh = Mathf.Sqrt(3) / 2.0f;
-
-        //    if (ray_hit)
-        //    {
-        //        is_hit = true;
-        //        if (up_dot_normal < thresh)
-        //        {
-        //            is_lie = true;
-        //            Debug.Log("start" + start);
-        //            Debug.Log("end" + end);
-        //            Debug.Log("normal" + i);
-        //            Debug.Log("up" + up);
-        //            break;
-        //        }
-        //    }
-        //}
-
     }
 
 }

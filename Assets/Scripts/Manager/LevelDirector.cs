@@ -73,15 +73,17 @@ public class LevelDirector : Singleton<LevelDirector>
     public void InitPlayer () 
 	{
         playerOBJ = Instantiate(playerPrefab, initPlayerPos, Quaternion.identity);
-        playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;//Init之后的具体事情应该让主角自己去做，LevelDirector管太宽了
-        playerOBJ.GetComponentInChildren<TrailRenderer>().time = 0.09f;
-        playerOBJ.GetComponent<PlayerMotor>().Cur_velocity = Vector2.zero;
     }
 
     public void TripleClickResurgence()//三连击应该是InputManager管的事情
     {
+        if (playerOBJ == null) return;
         playerOBJ.GetComponent<PlayerController>().MyState.IsLie = false;
         playerOBJ.GetComponent<PlayerController>().MyState.IsOnGround = true;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
+        //Vector3 pos = playerOBJ.transform.position;
+        //Destroy(playerOBJ);
+        //Instantiate(playerPrefab, pos, Quaternion.identity);
     }
 
     public void AddHistoryScore()

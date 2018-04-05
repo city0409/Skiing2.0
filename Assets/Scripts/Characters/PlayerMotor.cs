@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerMotor : Singleton<PlayerMotor>
 {
     private Animator anim;
-    //[SerializeField]
     private float speed;
-    //public float Speed { get { return speed; } set { speed = value; } }
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveForce = 10f;
     [SerializeField] private float gravity = 0.0f;
@@ -18,16 +16,18 @@ public class PlayerMotor : Singleton<PlayerMotor>
     private float cur_rolling_time = 0f;
     private float rolling_speed;
 
-    private Rigidbody2D rig;
+    public Rigidbody2D rig;
     private PlayerController controller;
     private Vector2 cur_velocity;
-    public Vector2 Cur_velocity { get { return cur_velocity; } set { cur_velocity = value; } }
+
+    private bool isStatic = false;
+    public bool IsStatic { get { return isStatic; } set { isStatic = value; } }
 
     private bool reset = true;
     public bool Reset { get { return reset; } set { reset = value; } }
 
     private DeadlineSlide deadlineSlide;
-
+    private Vector3 v;
     protected override void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -38,6 +38,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
 
     private void Start()
     {
+        cur_velocity = Vector2.zero;
         rolling_speed = 360 / rolling_min_time;
     }
 
@@ -62,14 +63,13 @@ public class PlayerMotor : Singleton<PlayerMotor>
         else if (controller.MyState.IsOnGround && !m_left_btn_clicked)
         {
             rig.AddForce(new Vector2(moveForce, -gravity), ForceMode2D.Force);
+
             Vector3 v = rig.velocity;
             Vector3 correct_dir = v - Vector3.Dot(ground_normal, v) * ground_normal;
             correct_dir.Normalize();
             rig.velocity = new Vector2(correct_dir.x, correct_dir.y) * v.magnitude;
         }
-
         speed = Mathf.Clamp(Vector3.SqrMagnitude(rig.velocity), 0f, maxSpeed);
-
         rig.velocity = rig.velocity.normalized * speed;
     }
 
@@ -129,14 +129,16 @@ public class PlayerMotor : Singleton<PlayerMotor>
         
         cur_velocity.Scale(new Vector2(0.1f, 0.9f));
         speed = cur_velocity.magnitude;
-        if (cur_velocity.magnitude < 0.1f)
+        if (cur_velocity.magnitude < 0.1f )
         {
+            print("nonononon");
             cur_velocity = Vector2.zero;
-            rig.bodyType = RigidbodyType2D.Static;
-        }
-        else
-        {
-            //Debug.Log("Lie" + cur_velocity);
+            //if (isStatic)
+            //{
+            //    isStatic = false;
+            //    rig.bodyType = RigidbodyType2D.Static;
+
+            //}
         }
         rig.velocity = cur_velocity;
 

@@ -8,9 +8,6 @@ using System;
 
 public class HomeUIPannel : MonoBehaviour 
 {
-    //[SerializeField] private Button startGameButton;
-    //[SerializeField] private Button rankButton;
-
     [SerializeField] private Transform down_Items;
     [SerializeField] private Transform up_Items;
     [SerializeField] private Image fader;
@@ -59,8 +56,6 @@ public class HomeUIPannel : MonoBehaviour
     public void RankGame()
     {
         UIManager.Instance.FaderOn(false, 1f);
-        //fader.gameObject.SetActive(true);
-        //fadeCoroutine = StartCoroutine(FadeInOut.FadeImage(fader, 0.5f, new Color(0, 0, 0, 0f)));
         UIManager.Instance.IsRank = true;
     }
 
@@ -86,7 +81,6 @@ public class HomeUIPannel : MonoBehaviour
 
     public void BackHomeRank()
     {
-        //GameManager.Instance.Reset();
         UIManager.Instance.FaderOn(false, 1f);
         UIManager.Instance.IsRank = false;
     }
@@ -96,11 +90,6 @@ public class HomeUIPannel : MonoBehaviour
         GameManager.Instance.PlayerResurgenceEvent();
         UIManager.Instance.FaderOn(false, 1f);
         UIManager.Instance.IsRank = false;
-        //StartCoroutine(Delay());
         StartGame();
     }
-    //private IEnumerator Delay()
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //}
 }

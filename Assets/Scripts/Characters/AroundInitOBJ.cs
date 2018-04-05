@@ -33,12 +33,10 @@ public class AroundInitOBJ : MonoBehaviour
     private void OnPlayerSpawn()
     {
         player = LevelDirector.Instance.PlayerOBJ;
-        print("OnPlayerSpawn");
     }
     private void OnBedBoyBorn()
     {
         player = LevelDirector.Instance.BedBoyOBJ;
-        print("OnBedBoyBorn");
     }
     private void Update () 
 	{

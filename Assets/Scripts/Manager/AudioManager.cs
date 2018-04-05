@@ -13,8 +13,6 @@ public class AudioManager : PersistentSingleton<AudioManager>
     public float MusicVolume = 0.3f;
     [SerializeField]
     private AudioSource _backgroundMusic1 = null;
-    //[SerializeField]
-    //private AudioSource _backgroundMusic2 = null;
 
     private AudioSource currentBGM;
     private Coroutine bgCoroutine;
@@ -25,8 +23,9 @@ public class AudioManager : PersistentSingleton<AudioManager>
     [SerializeField]
     private AudioClip gameoverClip3;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _backgroundMusic1 = GetComponent<AudioSource>();
     }
     private void OnEnable()
@@ -53,7 +52,6 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
     private void OnGameStart()
     {
-        //ChangeBackgroundMusic(_backgroundMusic1, _backgroundMusic2);
         ChangeBackgroundMusic(_backgroundMusic1, bgClip2, true);
     }
 
@@ -66,14 +64,6 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         ChangeBackgroundMusic(_backgroundMusic1, gameoverClip3, false);
     }
-
-    //推荐用第二种
-    //private void ChangeBackgroundMusic(AudioSource oldAudio, AudioSource newAudio)
-    //{
-    //    if (bgCoroutine != null)
-    //        StopCoroutine(bgCoroutine);
-    //    bgCoroutine = StartCoroutine(FadeInOut.FadeSound(oldAudio, newAudio, 2f));
-    //}
 
     private void ChangeBackgroundMusic(AudioSource audioSource, AudioClip newAudio,bool isLoop)
     {

@@ -8,10 +8,6 @@ public class GameOverBgMenu : MonoBehaviour
 {
     private Action onPlayerDead;
     private CanvasGroup gameOverCanvasGroup;
-    //[SerializeField]
-    //private Button restartGameButton;
-    //[SerializeField]
-    //private Button endButton;
 
     private void Awake() 
 	{
