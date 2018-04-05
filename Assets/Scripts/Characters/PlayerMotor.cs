@@ -51,6 +51,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
         }
         if (controller.MyState.IsOnGround && m_left_btn_clicked)
         {
+            controller.MyState.IsOnGround = false;
             rig.AddForce(new Vector2(jumpForce * ground_normal.x + jumpForce * ground_normal.y, 0.6f* jumpForce * ground_normal.y), ForceMode2D.Impulse);
         }
         else if (m_left_btn_clicked && !controller.MyState.IsOnGround && !controller.MyState.IsRollling)

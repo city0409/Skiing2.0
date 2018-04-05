@@ -85,6 +85,7 @@ public class PlayerController : Singleton<PlayerController>
             anim.SetBool("lie", false);
             anim.SetBool("roll", false);
             anim.SetBool("jump", true);
+
         }
         else if (myState.IsSkiing)
         {
@@ -190,7 +191,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         else
         {
-            myState.IsOnGround = false;
+            myState.IsOnGround = false;//注释这一句出现了一样的bug
         }
 
         if (is_hit)
