@@ -489,14 +489,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 150
   moveForce: 30
-  gravity: 5
+  gravity: 10
   maxSpeed: 30
   layerMaskGround:
     serializedVersion: 2
     m_Bits: 256
   rolling_min_time: 1
   rolling_thresh: 30
-  rig: {fileID: 0}
 --- !u!114 &114720209169967172
 MonoBehaviour:
   m_ObjectHideFlags: 1

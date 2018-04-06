@@ -81,6 +81,7 @@ public class LevelDirector : Singleton<LevelDirector>
         playerOBJ.GetComponent<PlayerController>().MyState.IsLie = false;
         playerOBJ.GetComponent<PlayerController>().MyState.IsOnGround = true;
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsRollling = false;
         //Vector3 pos = playerOBJ.transform.position;
         //Destroy(playerOBJ);
         //Instantiate(playerPrefab, pos, Quaternion.identity);
