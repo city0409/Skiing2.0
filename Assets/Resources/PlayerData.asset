@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerName: City
-  LeaderboardDatas: []
+  LeaderboardDatas:
+  - score: 23450
+    name: City
+  - score: 12330
+    name: City
+  - score: 3450
+    name: City
+  - score: 3270
+    name: City
+  - score: 2340
+    name: City
