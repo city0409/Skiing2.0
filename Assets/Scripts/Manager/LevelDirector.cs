@@ -75,6 +75,20 @@ public class LevelDirector : Singleton<LevelDirector>
         playerOBJ = Instantiate(playerPrefab, initPlayerPos, Quaternion.identity);
     }
 
+    public void TripleClickResurgence()//三连击应该是InputManager管的事情
+    {
+        if (playerOBJ == null) return;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsLie = false;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsOnGround = true;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
+        playerOBJ.GetComponent<PlayerController>().MyState.IsRollling = false;
+        //Vector3 pos = playerOBJ.transform.position;
+        //Destroy(playerOBJ);
+        //Instantiate(playerPrefab, pos, Quaternion.identity);
+        playerOBJ.GetComponent<PlayerMotor>().Rig.bodyType = RigidbodyType2D.Dynamic;
+
+    }
+
     public void AddHistoryScore()
     {
         if (score < 0) return;

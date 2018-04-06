@@ -128,10 +128,10 @@ public class PlayerMotor : Singleton<PlayerMotor>
             rig.angularVelocity = 0f;
             deadlineSlide.startDeadline = true;
         }
-        
+
         cur_velocity.Scale(new Vector2(0.1f, 0.9f));
         speed = cur_velocity.magnitude;
-        if (cur_velocity.magnitude < 0.1f )
+        if (cur_velocity.magnitude < 0.1f)
         {
             print("nonononon");
             cur_velocity = Vector2.zero;
@@ -143,6 +143,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
             }
         }
         rig.velocity = cur_velocity;
+        //rig.Sleep();
 
     }
 }
