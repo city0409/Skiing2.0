@@ -78,6 +78,7 @@ public class LevelDirector : Singleton<LevelDirector>
     public void TripleClickResurgence()//三连击应该是InputManager管的事情
     {
         if (playerOBJ == null) return;
+        playerOBJ.GetComponent<PlayerMotor>().Reset = true;
         playerOBJ.GetComponent<PlayerController>().MyState.IsLie = false;
         playerOBJ.GetComponent<PlayerController>().MyState.IsOnGround = true;
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;

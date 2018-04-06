@@ -61,40 +61,36 @@ public class PlayerController : Singleton<PlayerController>
         //{
         //    GoYou();
         //}
-        
-        if(myState.IsLie)
-        {
-            //anim.SetTrigger("lie");
-            anim.SetBool("ski", false);
-            anim.SetBool("lie", true);
-            anim.SetBool("roll", false);
-            anim.SetBool("jump", false);
-        }
-        else if (myState.IsRollling)
-        {
-            //anim.SetTrigger("roll");
-            anim.SetBool("ski", false);
-            anim.SetBool("lie", false);
-            anim.SetBool("roll", true);
-            anim.SetBool("jump", false);
-        }
-        else if (!myState.IsOnGround)
-        {
-            //anim.SetTrigger("jump");
-            anim.SetBool("ski", false);
-            anim.SetBool("lie", false);
-            anim.SetBool("roll", false);
-            anim.SetBool("jump", true);
 
-        }
-        else if (myState.IsSkiing)
+        if (myState.IsLie)
         {
-            //anim.SetTrigger("ski");
-            anim.SetBool("ski", true);
-            anim.SetBool("lie", false);
-            anim.SetBool("roll", false);
-            anim.SetBool("jump", false);
+            anim.SetBool("RollToSki", false);
+            anim.SetBool("SkiToJump", false);
+            anim.SetBool("JumpToRoll", false);
+            anim.SetBool("SkiToLie", true); return;
         }
+        if (!myState.IsOnGround && !myState.IsRollling)
+        {
+            anim.SetBool("SkiToLie", false);
+            anim.SetBool("RollToSki", false);
+            anim.SetBool("JumpToRoll", false);
+            anim.SetBool("SkiToJump", true);
+        }
+        else if (!myState.IsOnGround && myState.IsRollling)
+        {
+            anim.SetBool("SkiToLie", false);
+            anim.SetBool("RollToSki", false);
+            anim.SetBool("SkiToJump", false);
+            anim.SetBool("JumpToRoll", true);
+        }
+        else if (myState.IsOnGround && myState.IsSkiing)
+        {
+            anim.SetBool("RollToSki", false);
+            anim.SetBool("SkiToJump", false);
+            anim.SetBool("JumpToRoll", false);
+            anim.SetBool("SkiToLie", false);
+        }
+
 
     }
 
