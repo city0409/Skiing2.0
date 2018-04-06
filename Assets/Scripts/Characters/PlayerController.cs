@@ -17,7 +17,7 @@ public class PlayerController : Singleton<PlayerController>
     private BoxCollider2D playColl;
     public BoxCollider2D PlayColl { get { return playColl; } set { playColl = value; } }
 
-    private bool m_left_btn_clicked;
+    private bool leftButtonClicked;
     private Vector3 ground_normal;//当前地面法线
 
     [SerializeField] private SnowManController snowMan;
@@ -26,6 +26,31 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private LayerMask layerMaskSnowman;
     [SerializeField] private LayerMask layerMaskSnow;
 
+    private bool canJump = true;
+
+    private void OnEnable()
+    {
+        InputManager.Instance.onTripleClick.AddListener(Reset);
+    }
+    private void OnDisable()
+    {
+        InputManager.Instance.onTripleClick.RemoveListener(Reset);
+
+    }
+    private void Reset()
+    {
+        canJump = false;
+        MyState.IsLie = false;
+        MyState.IsOnGround = true;
+        MyState.IsSkiing = true;
+        MyState.IsRollling = false;
+        playerMotor.Rig.bodyType = RigidbodyType2D.Dynamic;
+        StartCoroutine(DoCanJump());
+    }
+    private IEnumerator DoCanJump() {
+        yield return new WaitForSeconds(0.5f);
+        canJump = true;
+    }
 
     protected override void Awake()
     {
@@ -52,17 +77,17 @@ public class PlayerController : Singleton<PlayerController>
         {
             return;
         }
-        if (!m_left_btn_clicked)
+        if (!leftButtonClicked && canJump)
         {
-            m_left_btn_clicked = Input.GetMouseButtonDown(0);
+            leftButtonClicked = Input.GetMouseButtonDown(0);
         }
 
-        //if (myState.IsRideSnowMan)
-        //{
-        //    GoYou();
-        //}
-        
-        if(myState.IsLie)
+        SetAnim();
+    }
+
+    private void SetAnim() {
+
+        if (myState.IsLie)
         {
             //anim.SetTrigger("lie");
             anim.SetBool("ski", false);
@@ -95,28 +120,19 @@ public class PlayerController : Singleton<PlayerController>
             anim.SetBool("roll", false);
             anim.SetBool("jump", false);
         }
-
     }
 
     private void FixedUpdate()
     {
         DetacteRaycast();
-        playerMotor.Movement(m_left_btn_clicked, ground_normal);
-        m_left_btn_clicked = false;
+        playerMotor.Movement(leftButtonClicked, ground_normal);
+        leftButtonClicked = false;
 
         if (myState.IsLie)
         {
             playerMotor.IsStatic = true;
             playerMotor.Lie();
         }
-    }
-
-
-    private void GoYou()
-    {
-        //playColl.offset = new Vector2(0f, 0.34f);
-        // playColl.size = new Vector2(1.02f, 1.68f);
-        //myState.IsSkiing = true;
     }
 
     private void DetacteRaycast()
