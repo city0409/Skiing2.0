@@ -195,6 +195,7 @@ public class PlayerController : Singleton<PlayerController>
             if (is_lie)
             {
                 myState.IsLie = true;
+                print("aaaaaaaaa");
             }
             else
             {

@@ -5,8 +5,12 @@ using System;
 
 public class DeadlineSlide : MonoBehaviour 
 {
-    public bool startDeadline = false;
+    private bool startDeadline = false;
+    public bool StartDeadline { get { return startDeadline; } set { startDeadline = value; } }
+
     private float timer = 6f;
+    public float Timer { get { return timer; } set { timer = value; } }
+
     private void Awake() 
 	{
 		

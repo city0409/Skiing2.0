@@ -22,7 +22,6 @@ public class LevelDirector : Singleton<LevelDirector>
 
     [SerializeField] private Vector3 initGround2Pos;
 
-
     private int score;
     public int Score{get { return score; }set{score = value;}}
     private int scoreAward;
@@ -37,7 +36,12 @@ public class LevelDirector : Singleton<LevelDirector>
     [SerializeField]
     private GameObject slideOBJ;
     public GameObject SlideOBJ { get { return slideOBJ; } private set { slideOBJ = value; } }
+    protected override void Awake()
+    {
+        base.Awake();
+        //deadlineSlide = playerOBJ.GetComponent<DeadlineSlide>();
 
+    }
     private void Start () 
 	{
         InitBG();
@@ -83,6 +87,8 @@ public class LevelDirector : Singleton<LevelDirector>
         playerOBJ.GetComponent<PlayerController>().MyState.IsOnGround = true;
         playerOBJ.GetComponent<PlayerController>().MyState.IsSkiing = true;
         playerOBJ.GetComponent<PlayerController>().MyState.IsRollling = false;
+        playerOBJ.GetComponent<DeadlineSlide>().StartDeadline = false;
+        playerOBJ.GetComponent<DeadlineSlide>().Timer = 6f;
         //Vector3 pos = playerOBJ.transform.position;
         //Destroy(playerOBJ);
         //Instantiate(playerPrefab, pos, Quaternion.identity);

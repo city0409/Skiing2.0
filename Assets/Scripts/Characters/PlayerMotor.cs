@@ -126,7 +126,7 @@ public class PlayerMotor : Singleton<PlayerMotor>
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, layerMaskGround);
             transform.localRotation = Quaternion.FromToRotation(transform.up, hit.normal);
             rig.angularVelocity = 0f;
-            deadlineSlide.startDeadline = true;
+            deadlineSlide.StartDeadline = true;
         }
 
         cur_velocity.Scale(new Vector2(0.1f, 0.9f));

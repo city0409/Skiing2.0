@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BG
   - Stone
+  - NoTreeGround
   layers:
   - Default
   - TransparentFX

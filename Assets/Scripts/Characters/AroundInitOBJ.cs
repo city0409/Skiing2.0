@@ -58,7 +58,7 @@ public class AroundInitOBJ : MonoBehaviour
         initTreePos = player.transform.position.x + cameraWidth*2f + UnityEngine.Random.Range(6f, 16f);
         pos = new Vector2(initTreePos, player.transform.position.y);
         RaycastHit2D hit = Physics2D.Raycast(pos, -Vector2.up, 1000f, layerMaskGround);
-        if (hit.collider != null)
+        if (hit.collider != null && !hit.collider.gameObject.CompareTag("NoTreeGround"))
         {
             Vector3 v =  hit.point;
             GameObject obj1 = TreePool.Instance.InitTree();

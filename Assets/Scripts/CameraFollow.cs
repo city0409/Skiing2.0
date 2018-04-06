@@ -68,12 +68,15 @@ public class CameraFollow : MonoBehaviour
         {
             bgText.transform.position = GetComponent<Transform>().position + new Vector3(0f, 0f, 40f);
             
-            RaycastHit2D hit = Physics2D.Raycast(currentPlayer.transform.position, Vector2.down, 30f, mask);
+            RaycastHit2D hit = Physics2D.Raycast(currentPlayer.transform.position, Vector2.down, 1000f, mask);
             if (hit == true)
             {
-                tempPos = Vector2.Lerp(tempPos, hit.point + change, Time.deltaTime * 5);
+                tempPos = Vector2.Lerp(tempPos, hit.point + change, Time.deltaTime*5);
                 tempPos.z = -10;
                 transform.position = tempPos;
+                transform.position = new Vector3(transform.position.x,
+                                     Mathf.Clamp(transform.position.y, currentPlayer.transform.position.y - 7f, currentPlayer.transform.position.y + 3f),
+                                     transform.position.z);
             }
         }
         
